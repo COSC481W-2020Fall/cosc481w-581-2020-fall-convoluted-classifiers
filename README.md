@@ -14,3 +14,5 @@ This is an open source dog breed detector.
 - create a venv **NAMED VENV**
 - activate venv 
 - install modules
+
+# Prototype Description
