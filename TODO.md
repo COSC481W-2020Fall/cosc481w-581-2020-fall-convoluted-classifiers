@@ -8,7 +8,7 @@ This document is meant for a public record of our todo list to keep everyone acc
 - [ ] Detect dogs in image of various sizes
 
 # Deliverable
-- [ ] Detect dogs from image captured from a brouser
+- [ ] Detect dogs from image captured from a browser
 - [ ] Upload to a cloud system
 - [ ] Workable on phone (?)
 - [ ] Better install instruction
