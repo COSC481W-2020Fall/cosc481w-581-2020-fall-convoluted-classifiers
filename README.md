@@ -1,4 +1,4 @@
-# Dog Breed Detector
+# Dog Breed Detector v0.0.1
 This is an open source dog breed detector.
 
 # Install
