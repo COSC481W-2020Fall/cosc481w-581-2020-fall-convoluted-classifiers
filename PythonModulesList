@@ -12,6 +12,10 @@ TensorFlow and Keras
 OpenCV
 		https://www.youtube.com/watch?v=WQeoO7MI0Bs&ab_channel=Murtaza%27sWorkshop-RoboticsandAI
     (this videos goes over the basics of OPENCV and also has 3 example projects)
+    
+ObjectDetection with Image AI:
+	https://stackabuse.com/object-detection-with-imageai-in-python/#:~:text=The%20ObjectDetection%20class%20of%20the,kinds%20of%20common%2C%20everyday%20objects.
+	This has instructions of how to use and install the module. It also has an example of using it to detect cars and pedestrians in a picture.
 
 Also found some datasets
 	  CIFAR-10
