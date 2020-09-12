@@ -1,8 +1,44 @@
 # 09-08-2020
 - Discuss tentative items and make them actual
-- Discuss prototype paramenters
+- Discuss prototype parameters
   - Python script that detects if a dog(?) is in an image
 - Discuss what we are going to have for next meeting
   - Modules that detect items in images
   - (?) Detect dogs
 
+# 09-11-2020
+- Meeting started at 11:30 am
+- Attendance:
+  - All present
+- [Main modules to use](https://stackabuse.com/object-detection-with-imageai-in-python/)
+  - TensorFlow
+  - Keras
+  - OpenCV
+  - ImageAI
+  - TinyYOLOv3
+- Training data
+  - http://imagenet.org/
+  - https://www.kaggle.com/chetankv/dogs-cats-images
+  - http://vision.stanford.edu/aditya86/ImageNetDogs/ 
+  - Ideas for negatives?
+- Finding data
+  - Find 20+ positive each
+  - Positive image folder
+  - Due Tuesday 09-15-2020
+  - At least a few images by the 14th
+  - Images should be uploaded in branch called "positives"
+- Next meeting
+  - 09-18-2020 @ 11:00 am
+  - In same Zoom room
+- Discussed prototype
+  - Command line input/output
+  - input: path to an image
+  - output: has dog yes/no
+- Karen and Baylie are going to begin work on front end
+- Baylie finished prototype description
+- Preferred Communication
+  - Slack
+  - Check a few times a day
+- Jacob, Yao, and Cassie will have a proto-prototype deliverable by next meeting
+  - Make sure to comment everything very well
+- Meeting ended at 12:13pm
