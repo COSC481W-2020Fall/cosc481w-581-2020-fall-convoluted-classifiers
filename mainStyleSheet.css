@@ -1,0 +1,10 @@
+.filepond--root {
+    max-width:40em;
+}
+
+body {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 40px;
+}
