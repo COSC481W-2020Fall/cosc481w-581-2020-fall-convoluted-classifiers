@@ -18,3 +18,4 @@ The user will simply be prompted to enter the given file/directory that they wis
 
 We will be using the command line prompt to prompt the user, provide user input,run the program, and display any output. To verify that our program is accurate we will manually check the output against the correctly labeled images that do identify a dog. 
 
+![Prototype use case diagram](useCaseDiagram.png)
