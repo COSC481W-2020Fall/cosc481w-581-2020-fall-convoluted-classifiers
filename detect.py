@@ -5,24 +5,13 @@ from os import path, listdir, makedirs
 from sys import exit
 
 
-def scan_image(image_file, output_file, min_prob):
+def scan_image(image_file, output_file, min_prob, detector):
     return_ = False
 
-    detector = ObjectDetection()
     
-    model_dir = path.join(".", "models")
-    model_path = path.join(model_dir,"yolo.h5")
-    if not path.isfile(model_path):
-        from download_model import download_model
-        download_model()
-
-    detector.setModelTypeAsYOLOv3()
-    detector.setModelPath(model_path)
-    detector.loadModel()
-    dog_detect = detector.CustomObjects(dog=True)
 
     returned_image, detection = detector.detectCustomObjectsFromImage(
-        custom_objects=dog_detect,
+        custom_objects=detector.CustomObjects(dog=True),
         input_image=image_file,
         output_type='array',
         display_percentage_probability=False,
@@ -32,7 +21,7 @@ def scan_image(image_file, output_file, min_prob):
 
     if detection != []:
         for item in detection:
-            print(f'{image_file} => {item["name"]}: {item["percentage_probability"]}')
+            print(f'{image_file} => yes - {item["name"]}: {item["percentage_probability"]}')
         img = Image.fromarray(returned_image)
         img.save(output_file)
         return_ = True
@@ -57,6 +46,18 @@ def detect (input, output_path):
         print("not a valid directory, creating it")
         makedirs(output_path)
 
+    detector = ObjectDetection()
+    
+    model_dir = path.join(".", "models")
+    model_path = path.join(model_dir,"yolo.h5")
+    if not path.isfile(model_path):
+        from download_model import download_model
+        download_model()
+
+    detector.setModelTypeAsYOLOv3()
+    detector.setModelPath(model_path)
+    detector.loadModel()
+
     found = 1
     min_probability = 60
     for image in images:
@@ -64,7 +65,8 @@ def detect (input, output_path):
             find = scan_image(
                 image,
                 path.join(output_path,f"dog{found}.jpg"),
-                min_probability
+                min_probability,
+                detector
             )
             if find:
                 found += 1
