@@ -3,3 +3,7 @@ venv/
 .vscode/
 test_images/
 .output/*.jpg
+.output/*.JPG
+.output/*.jpeg
+.output/*.png
+models/*.h5
