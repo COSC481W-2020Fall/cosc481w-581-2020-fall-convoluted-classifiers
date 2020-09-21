@@ -1,5 +1,5 @@
 import requests
-import os.path.join
+from os.path import join
 
 def download_model () :
     print("Downloading yolo v3 model, this may take a moment...")
