@@ -1,4 +1,4 @@
-# Dog Breed Detector v0.0.1
+# Dog Breed Detector v0.1.0
 This is an open source dog breed detector.
 
 # Install
@@ -6,10 +6,14 @@ This is an open source dog breed detector.
 2. Clone/download the repository
    - Download zip
    - `git clone https://github.com/COSC481W-2020Fall/cosc481w-581-2020-fall-convoluted-classifiers.git`
-3. Create a venv (using bash) (Windows recommended using git terminal, or ubuntu shell)
+3. Create a venv (using bash) (Windows recommended using git terminal, or ubuntu shell using WSL)
     1. `python3.7 -m venv venv`
        1. if previous does not work on windows, use `py -3.7 -m venv venv`
-    2. `pip install -r requirements.txt`
+    2. Mac/Linux - `venv/bin/python -m pip install -r requirements.txt`
+    3. Windows   - `venv\Scripts\python.exe -m pip install -r requirements.txt`
+
+# Run
+1. Run command `venv\Scripts\python.exe main.py --test_location="[LOCATION]"`
 
 # Prototype Description
 
