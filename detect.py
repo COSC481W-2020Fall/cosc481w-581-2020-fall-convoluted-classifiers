@@ -21,7 +21,7 @@ def scan_image(image_file, output_file, min_prob, detector):
 
     if detection != []:
         for item in detection:
-            print(f'{image_file} => yes - {item["name"]}: {item["percentage_probability"]}')
+            print(f'{image_file} => yes - {item["name"]}: {item["percentage_probability"]} - file: {output_file}')
         img = Image.fromarray(returned_image)
         img.save(output_file)
         return_ = True
