@@ -1,3 +1,9 @@
+# Table of Contents
+- [Table of Contents](#table-of-contents)
+- [09-08-2020](#09-08-2020)
+- [09-11-2020](#09-11-2020)
+- [09-18-2020](#09-18-2020)
+
 # 09-08-2020
 - Discuss tentative items and make them actual
 - Discuss prototype parameters
@@ -42,3 +48,8 @@
 - Jacob, Yao, and Cassie will have a proto-prototype deliverable by next meeting
   - Make sure to comment everything very well
 - Meeting ended at 12:13pm
+
+# 09-18-2020
+  - Minutes of this meeting mostly lost
+  - Video and Transcription of running demo
+    - https://emich.zoom.us/rec/share/dT4l6nBjBXh0pBqhy7dtikEqk4Sj5kxmrLJ3uOdee2jF8Ot77XThOSpyM2HXmamU.UuCBWlLoPO0uSZyD
