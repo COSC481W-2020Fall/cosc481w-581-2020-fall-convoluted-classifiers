@@ -69,3 +69,8 @@
 - Cassie will begin on gathering cropped images of dogs
 - Yao is working on research for classification model
 - Working on the persona
+- Jacob will look-up how to silence warning
+- Add more positives and negatives if you have some
+  - create a branch with them and create a pull request
+- Meeting time change to Monday at 7:30pm
+  - Next meeting is monday Oct 5th
