@@ -3,6 +3,7 @@
 - [09-08-2020](#09-08-2020)
 - [09-11-2020](#09-11-2020)
 - [09-18-2020](#09-18-2020)
+- [09-25-2020](#09-25-2020)
 
 # 09-08-2020
 - Discuss tentative items and make them actual
@@ -50,6 +51,21 @@
 - Meeting ended at 12:13pm
 
 # 09-18-2020
-  - Minutes of this meeting mostly lost
-  - Video and Transcription of running demo
-    - https://emich.zoom.us/rec/share/dT4l6nBjBXh0pBqhy7dtikEqk4Sj5kxmrLJ3uOdee2jF8Ot77XThOSpyM2HXmamU.UuCBWlLoPO0uSZyD
+- Minutes of this meeting mostly lost
+- Video and Transcription of running demo
+  - https://emich.zoom.us/rec/share/dT4l6nBjBXh0pBqhy7dtikEqk4Sj5kxmrLJ3uOdee2jF8Ot77XThOSpyM2HXmamU.UuCBWlLoPO0uSZyD
+
+# 09-25-2020
+- 11:03 AM
+  - everyone is present
+- Take a break if you need to, just let us know
+- Small demo of the app emulator
+- For backend EC2 or lambda
+- AWS gives us a credit, if we need more contact Dr. Jiang
+  - We have gotten an email at the beginning at the semester for a student
+- Cassie is working on commenting the code
+  - Has main done is working on detect
+  - Will do download_model too
+- Cassie will begin on gathering cropped images of dogs
+- Yao is working on research for classification model
+- Working on the persona
