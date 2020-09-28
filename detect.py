@@ -21,9 +21,10 @@ def scan_image(image_file, output_file, min_prob, detector):
 
     if detection != []:
         for item in detection:
-            print(f'{image_file} => yes - {item["name"]}: {item["percentage_probability"]}')    #Output if dog is positive, image file, yes, probability
+            print(f'{image_file} => yes - {item["name"]}: {item["percentage_probability"]} - file: {output_file}')    #Output if dog is positive, image file, yes, probability
         img = Image.fromarray(returned_image)       #Save the returned image
         img.save(output_file)           #Save the image in the output file
+
         return_ = True
     else:
         print(f'{image_file} => no dog found with {min_prob}% probability')         #There is no dog found message
@@ -38,6 +39,14 @@ def get_images(input):          #Find the images
     else:
         print(f"{input} is not found to be a file or directory.")       #If no file or directory is found, display error message.
         exit()              #Exit program
+    # remove files that are not images
+    for i in reversed(range(len(output))):
+        if output[i].split('.')[-1].lower() not in ['png', 'jpg', 'jpeg']:
+            print(f"{output.pop(i)} is not a valid image file")
+    # exit if there are no files
+    if len(output) == 0:
+        print("There are no files to detect, terminating")
+        exit()
     return output
 
 def detect (input, output_path):            #Detection function
@@ -61,18 +70,15 @@ def detect (input, output_path):            #Detection function
     found = 1
     min_probability = 60            #Minimum probability is set to 60
     for image in images:
-        if image.split('.')[-1].lower() in ['png', 'jpg', 'jpeg']:          #Check for a valid image file
-            find = scan_image(
-                image,      #Get the image
-                path.join(output_path,f"dog{found}.jpg"),           #Name of the output file, with the number of found images
-                min_probability,        #Check probability of dog
-                detector            #run detector
-            )
-            if find:
-                found += 1          #Add 1 to found number each time of positive result
-        else:
-            print(f'{image} is not a valid image file')         #Print error if not a valid image file
 
+        find = scan_image(
+            image,
+            path.join(output_path,f"dog{found}.jpg"),
+            min_probability,
+            detector
+        )
+        if find:
+            found += 1                #Add 1 to found number each time of positive result
 
 if __name__ == '__main__':
     detect(path.join(".", ".positives"), path.join(".", ".output"))         #Set defaults for input and output
