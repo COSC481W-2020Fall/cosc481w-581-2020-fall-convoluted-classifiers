@@ -38,7 +38,7 @@ def get_images(input):
     else:
         print(f"{input} is not found to be a file or directory.")
         exit()
-    for i in reversed(range(output)):
+    for i in reversed(range(len(output))):
         if output[i].split('.')[-1].lower() not in ['png', 'jpg', 'jpeg']:
             print(f"{output.pop(i)} is not a valid image file")
     if len(output) == 0:
