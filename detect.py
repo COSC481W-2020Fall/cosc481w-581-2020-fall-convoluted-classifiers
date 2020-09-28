@@ -21,7 +21,7 @@ def scan_image(image_file, output_file, min_prob, detector):
 
     if detection != []:
         for item in detection:
-            print(f'{image_file} => yes - {item["name"]}: {item["percentage_probability"]}')
+            print(f'{image_file} => yes - {item["name"]}: {item["percentage_probability"]} - file: {output_file}')
         img = Image.fromarray(returned_image)
         img.save(output_file)
         return_ = True
@@ -37,6 +37,12 @@ def get_images(input):
         output = [path.join(input, i) for i in listdir(input)]
     else:
         print(f"{input} is not found to be a file or directory.")
+        exit()
+    for i in reversed(range(len(output))):
+        if output[i].split('.')[-1].lower() not in ['png', 'jpg', 'jpeg']:
+            print(f"{output.pop(i)} is not a valid image file")
+    if len(output) == 0:
+        print("There are no files to detect, terminating")
         exit()
     return output
 
@@ -61,17 +67,14 @@ def detect (input, output_path):
     found = 1
     min_probability = 60
     for image in images:
-        if image.split('.')[-1].lower() in ['png', 'jpg', 'jpeg']:
-            find = scan_image(
-                image,
-                path.join(output_path,f"dog{found}.jpg"),
-                min_probability,
-                detector
-            )
-            if find:
-                found += 1
-        else:
-            print(f'{image} is not a valid image file')
+        find = scan_image(
+            image,
+            path.join(output_path,f"dog{found}.jpg"),
+            min_probability,
+            detector
+        )
+        if find:
+            found += 1
 
 
 if __name__ == '__main__':
