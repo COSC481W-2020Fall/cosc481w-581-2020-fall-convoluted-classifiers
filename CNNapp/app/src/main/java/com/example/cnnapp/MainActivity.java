@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -22,21 +23,25 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
 {
-
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    ImageView imageView;
+    static final int REQUEST_TAKE_PHOTO = 1;
+    String mCurrentPhotoPath;
+    ImageView myImage;
+    TextView resultTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        resultTextView = (TextView) findViewById(R.id.resultTextDisplay);
+        myImage = (ImageView) findViewById(R.id.pictureDisplay);
     }
 
     private void takePhoto() {
         Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePhotoIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePhotoIntent, REQUEST_IMAGE_CAPTURE);
+            startActivityForResult(takePhotoIntent, REQUEST_TAKE_PHOTO);
         }
     }
 
@@ -44,26 +49,26 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //Displays image to user
         if (requestCode == 1) {
             File imgFile = new File(mCurrentPhotoPath);
             if (imgFile.exists()) {
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                ImageView myImage = (ImageView) findViewById(R.id.pictureDisplay);
                 myImage.setImageBitmap(myBitmap);
                 MediaStore.Images.Media.insertImage(getContentResolver(), myBitmap, "title", "disc");
             }
         }
         Toast.makeText(this, "Image Taken", Toast.LENGTH_LONG).show();
 
+        //Display results
+        resultTextView.setVisibility(View.VISIBLE);
+        resultTextView.setText("Results go here");
 
     }
 
     public void onButtonClick(View v){
         dispatchTakePictureIntent();
     }
-
-    static final int REQUEST_TAKE_PHOTO = 1;
-    String mCurrentPhotoPath;
 
     private File createImageFile() throws IOException {
         // Create an image file name

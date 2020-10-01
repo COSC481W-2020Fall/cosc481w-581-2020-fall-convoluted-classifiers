@@ -11,21 +11,37 @@
     <ImageView
         android:id="@+id/pictureDisplay"
         android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
+        android:background="#A9A9A9"
         android:scaleType="fitCenter"
         />
 
+    <!-- Button to take Picture -->
     <Button
         android:id="@+id/photoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pictureDisplay"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="64dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:background="#999999"
         android:onClick="onButtonClick"
         android:padding="10dp"
+        android:textSize="20sp"
         android:text="Take Photo" />
+
+    <!-- Label to display Output (Yes/No Dog) -->
+    <TextView
+        android:id="@+id/resultTextDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/photoButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textSize="30sp"
+        android:textColor="#000000"
+        android:visibility="invisible"
+        />
 </RelativeLayout>

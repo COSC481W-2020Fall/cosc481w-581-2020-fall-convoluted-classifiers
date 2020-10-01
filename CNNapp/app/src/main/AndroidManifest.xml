@@ -4,7 +4,7 @@
 
     <!-- App Permissions -->
     <uses-feature android:name="android.hardware.camera"
-        android:required="true"/> //User must have a camera to use the app
+        android:required="true"/> <!--User must have a camera to use the app -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
