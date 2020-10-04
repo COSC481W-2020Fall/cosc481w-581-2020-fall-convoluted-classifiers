@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -38,72 +36,81 @@ public class MainActivity extends AppCompatActivity
         myImage = (ImageView) findViewById(R.id.pictureDisplay);
     }
 
-    private void takePhoto() {
-        Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePhotoIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePhotoIntent, REQUEST_TAKE_PHOTO);
-        }
-    }
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //Displays image to user
-        if (requestCode == 1) {
+        //Displays image that was taken to user
+        if (requestCode == 1)
+        {
             File imgFile = new File(mCurrentPhotoPath);
-            if (imgFile.exists()) {
+            //Checks if File exists
+            if (imgFile.exists())
+            {
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 myImage.setImageBitmap(myBitmap);
+                //Stores the image under the gallery
                 MediaStore.Images.Media.insertImage(getContentResolver(), myBitmap, "title", "disc");
+                Toast.makeText(this, "Image Taken", Toast.LENGTH_LONG).show();
             }
         }
-        Toast.makeText(this, "Image Taken", Toast.LENGTH_LONG).show();
 
-        //Display results
+        //Display results (yes/no)
         resultTextView.setVisibility(View.VISIBLE);
         resultTextView.setText("Results go here");
-
     }
 
-    public void onButtonClick(View v){
+    public void onButtonClick(View v)
+    {
+        //Calls method to open the camera
         dispatchTakePictureIntent();
     }
 
-    private File createImageFile() throws IOException {
-        // Create an image file name
+    private File createImageFile() throws IOException
+    {
+        //Create a filename for the image
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        //Creates File
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
 
-        // Save a file: path for use with ACTION_VIEW intents
+        //Save a File: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
 
-    private void dispatchTakePictureIntent() {
+    private void dispatchTakePictureIntent()
+    {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
+        //Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null)
+        {
+            //Create the File where the photo should go
             File photoFile = null;
-            try {
+            try
+            {
                 photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
+            }
+            catch (IOException ex)
+            {
+                //Error occurred while creating the File
+                Toast.makeText(this, "Unable to Save Image", Toast.LENGTH_LONG).show();
             }
 
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
+            //Continue only if the File was successfully created
+            if (photoFile != null)
+            {
                 Uri photoURI = FileProvider.getUriForFile(this,
                         "com.example.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                //Opens camera for user to take a picture
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
