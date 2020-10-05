@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        //Use activity_main.xml to style the app
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
