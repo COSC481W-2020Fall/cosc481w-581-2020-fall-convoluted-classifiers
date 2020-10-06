@@ -9,7 +9,9 @@ User Story 4 Task: Find out which AWS items will be used - Baylie, Karen, & Jaco
 
 - Testing with AWS Amplify to see if we can connect to an S3 Bucket, see [documentation](https://docs.amplify.aws/lib/storage/getting-started/q/platform/android)
 
-- ![Possible Architecture 1:](arch1.png)
+- Possible Architecture 1:
+![1](arch1.png)
 
-- ![Possible Architecture 2:](arch2.png)
+- Possible Architecture 2: 
+![2](arch2.png)
 
