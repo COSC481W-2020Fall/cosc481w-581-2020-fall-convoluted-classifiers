@@ -7,7 +7,11 @@ User Story 2 Task: Research how to integrate the server - Baylie & Karen (Oct 12
 
 User Story 4 Task: Find out which AWS items will be used - Baylie, Karen, & Jacob (Oct 12)
 
-- Testing with AWS Amplify to see if we can connect to an S3 Bucket, see [documentation](https://docs.amplify.aws/lib/storage/getting-started/q/platform/android)
+- Testing with AWS Amplify to see if we can connect to an S3 Bucket, see [documentation]
+Prerequisites
+  (https://docs.amplify.aws/lib/project-setup/prereq/q/platform/android)
+Getting Started
+  (https://docs.amplify.aws/lib/storage/getting-started/q/platform/android)
 
 - Possible Architecture 1:
 ![1](arch1.png)
