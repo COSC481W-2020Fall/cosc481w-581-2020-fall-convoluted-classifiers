@@ -4,6 +4,7 @@
 - [09-11-2020](#09-11-2020)
 - [09-18-2020](#09-18-2020)
 - [09-25-2020](#09-25-2020)
+- [10-05-2020](#10-05-2020)
 
 # 09-08-2020
 - Discuss tentative items and make them actual
@@ -74,3 +75,28 @@
   - create a branch with them and create a pull request
 - Meeting time change to Monday at 7:30pm
   - Next meeting is monday Oct 5th
+
+# 10-05-2020
+- Meeting called to order at 7:35 pm
+  - All present
+- Possible datasets
+  - [x] [Stanford](http://vision.stanford.edu/aditya86/ImageNetDogs/)
+  - [ ] [Pedigree](https://dogs.pedigreeonline.com/breeds/)
+- Yao and Jacob will get to work training the model (Yao will lead)
+  - Example Models
+    - https://github.com/saksham789/DOG-BREED-CLASSIFICATION-STANFORD-DOG-DATASET 
+    - https://github.com/zrsmithson/Stanford-dogs 
+- Architecture
+  - Capture Image
+  - Send to S3 bucket
+  - Trigger lambda function(s)
+  - return box around dog and breed
+- App
+  - Send/Recieve Bitmap image and receive breed as text
+  - Find out how to export a bitmap from the app (for the request)
+- Image cropping
+  - Working on it, likely done tomorrow
+  - https://imageai.readthedocs.io/en/latest/detection/
+- Make an activities log for items that don't necessarily have commits
+- Make tasks clearer and more actionable as research goes on
+- Adjourn meet at 8:02pm
