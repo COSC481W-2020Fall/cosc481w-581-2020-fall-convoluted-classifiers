@@ -44,7 +44,7 @@ aws_access_key_id=ASIAWAGKPYWX2FMMJERL
 aws_secret_access_key=GN3xkC47Nz/lAqDjeGI6WeYDNQTKf5GgOsq84xnN aws_session_token=FwoGZXIvYXdzEA4aDJu6loW1au1IpXUiYiLBAUIgxwghkH8YtPycNF342Sp1A7z730JW3YJJITp4cgbGtWWm666dVRL/dkI+zYqm7tKNb7v6IMs5U1cb9ChtEDulKE+iEhIbq3VEtAntoEDtlxx7NozCc6RFLn6GTE5rYf90Qy5pmelxa4hKuxtBqi/58UfvJiNoEL7LfzHeRrO6tpKZmk18SEX3WHqFnKd4nDMPE3i2+PcCLnwkSGBr5i9fncmAl0uRTdWMVtZCKokylwyn/slwMvLubQ0x1NC4p6Io4en9+wUyLWMQPN4RfR+ndtCz9Q8CoogohaskEclp7NyhoI6uBM9acBy6pNSqw7qZc+ZiRw==
 
  
-- 17)In your command line run the following commands one at a time using your own AWS credentials:
+- 17) In your command line run the following commands one at a time using your own AWS credentials:
 
 set aws_access_key_id=ASIAWAGKPYWX2FMMJERL
 set aws_secret_access_key=GN3xkC47Nz/lAqDjeGI6WeYDNQTKf5GgOsq84xnN 
