@@ -18,8 +18,9 @@ Getting Started
 # Baylie & Karen Meeting 10/8/20 3:30pm
   
   
-Issue #55: Research how to integrate the server - Baylie & Karen (Oct 12)
-Issue #60: Install Amplify AWS and connect to the mobile app - Baylie & Karen (Oct 12)
+Issue #55 : Research how to integrate the server - Baylie & Karen (Oct 12)
+
+Issue #60 : Install Amplify AWS and connect to the mobile app - Baylie & Karen (Oct 12)
 
 Installing AWS CLI and Amplify (https://docs.amplify.aws/cli/start/install)
   
