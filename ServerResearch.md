@@ -1,11 +1,11 @@
 # Baylie & Karen Meeting 10/6/20 7pm
 
-Issue #55: Research how to integrate the server - Baylie & Karen (Oct 12)
+**Issue #55: Research how to integrate the server - Baylie & Karen (Oct 12)**
 
 - Both attempted to install AWS Amplify to begin testing if this is an item that we can use and we ran into installation issues on our  education accounts. AWS was not allowing us to create an IAM user, so we contacted the professor about this issue to see if she can help.
 
 
-Issue #50: Find out which AWS items will be used - Baylie, Karen, & Jacob (Oct 12)
+**Issue #50: Find out which AWS items will be used - Baylie, Karen, & Jacob (Oct 12)**
 
 - Testing with AWS Amplify to see if we can connect to an S3 Bucket
 
@@ -18,7 +18,7 @@ Getting Started
 # Baylie & Karen Meeting 10/8/20 3:30pm
   
   
-Issue #55 : Research how to integrate the server - Baylie & Karen (Oct 12) & Issue #60 : Install Amplify AWS and connect to the mobile app - Baylie & Karen (Oct 12)
+**Issue #55 : Research how to integrate the server - Baylie & Karen (Oct 12) & Issue #60 : Install Amplify AWS and connect to the mobile app - Baylie & Karen (Oct 12)**
 
 Installing AWS CLI and Amplify (https://docs.amplify.aws/cli/start/install)
   
@@ -64,7 +64,7 @@ set aws_session_token= ...............
 Amplify was successfully installed and connected to the mobile app.  
 
 
-Issue #50 : Find out which AWS items will be used - Baylie, Karen, & Jacob (Oct 12)
+**Issue #50 : Find out which AWS items will be used - Baylie, Karen, & Jacob (Oct 12)**
 
 - For the front end: AWS Amplify to connect to moblie app and 2 S3 Buckets to store the image taken on the phone and return the results. 
   
