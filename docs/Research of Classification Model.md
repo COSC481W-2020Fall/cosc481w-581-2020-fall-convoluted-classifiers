@@ -1,7 +1,5 @@
 # Research of Classification Model
 
-This is document of dog breeds classification model.
-
 - links
     - Dataset of Dog Breeds
         - Stanford Dogs Dataset — from Stanford
