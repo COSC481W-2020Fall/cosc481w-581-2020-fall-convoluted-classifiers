@@ -3,12 +3,13 @@ from imageai.Detection import ObjectDetection
 from PIL import Image 
 from os import path, listdir, makedirs
 from sys import exit
+from time import time
 
 
 def scan_image(image_file, output_file, min_prob, detector):
     return_ = False
 
-    returned_image, detection, crops = detector.detectCustomObjectsFromImage(      #everything that is detected from the image
+    _, detection, crops = detector.detectCustomObjectsFromImage(      #everything that is detected from the image
         custom_objects=detector.CustomObjects(dog=True),            #dog is set to true for presence of a dog
         input_image=image_file,                 #image file is stored for positive dog
         output_type='array',
@@ -61,10 +62,12 @@ def detect (input, output_path):                #Detection function
         from download_model import download_model                       #Download model if it is not valid
         download_model()
 
+    t0 = time()
     detector.setModelTypeAsYOLOv3()                         #Call these 3 Model methods for detection
     detector.setModelPath(model_path)
     detector.loadModel()
-
+    t1 = time()
+    print("Model Loaded", t1-t0)
     found = 1
     min_probability = 60                        #Minimum probability is set to 60
     for image in images:
@@ -76,6 +79,7 @@ def detect (input, output_path):                #Detection function
         )
         if find:
             found += 1                   #Add 1 to found number each time of positive result
+    print("Completed", time()-t1)
 
 
 if __name__ == '__main__':
