@@ -16,7 +16,8 @@ def scan_image(image_file, output_file, min_prob, detector):
         output_type='array',
         display_percentage_probability=False,           #Don't display the probability here 
         display_object_name=False,              #Don't display the object name
-        minimum_percentage_probability=min_prob             #setting the minimum probability to 60
+        minimum_percentage_probability=min_prob,             #setting the minimum probability to 60
+        extract_detected_objects=True
     )
 
     if detection != []:
