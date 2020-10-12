@@ -8,9 +8,10 @@ from sys import exit
 def scan_image(image_file, output_file, min_prob, detector):
     return_ = False
 
-    
+    # TODO:
+    #       Handle numbering output files inside scan_image
 
-    returned_image, detection = detector.detectCustomObjectsFromImage(      #everything that is detected from the image
+    returned_image, detection, crops = detector.detectCustomObjectsFromImage(      #everything that is detected from the image
         custom_objects=detector.CustomObjects(dog=True),            #dog is set to true for presence of a dog
         input_image=image_file,                 #image file is stored for positive dog
         output_type='array',
@@ -21,10 +22,10 @@ def scan_image(image_file, output_file, min_prob, detector):
     )
 
     if detection != []:
-        for item in detection:
+        for item, image in zip(detection, crops):
             print(f'{image_file} => yes - {item["name"]}: {item["percentage_probability"]} - file: {output_file}')          #Output if dog is positive, image file, yes, probability
-        img = Image.fromarray(returned_image)           #Save the returned image
-        img.save(output_file)           #Save the image in the output file
+            img = Image.fromarray(image)           #Save the returned image
+            img.save(output_file)           #Save the image in the output file
         return_ = True
     else:
         print(f'{image_file} => no dog found with {min_prob}% probability')         #There is no dog found message
