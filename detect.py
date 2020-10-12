@@ -8,9 +8,6 @@ from sys import exit
 def scan_image(image_file, output_file, min_prob, detector):
     return_ = False
 
-    # TODO:
-    #       Handle numbering output files inside scan_image
-
     returned_image, detection, crops = detector.detectCustomObjectsFromImage(      #everything that is detected from the image
         custom_objects=detector.CustomObjects(dog=True),            #dog is set to true for presence of a dog
         input_image=image_file,                 #image file is stored for positive dog
