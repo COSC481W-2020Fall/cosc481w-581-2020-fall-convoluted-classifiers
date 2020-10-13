@@ -4,6 +4,18 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
+
+        // Adding for Amplify - Enable multidex support (if supporting min SDK < 21)
+        multiDexEnabled true
+
+        // Adding for Amplify
+        compileOptions {
+            // Support for Java 8 features
+            coreLibraryDesugaringEnabled true
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
         applicationId "com.example.cnnapp"
         minSdkVersion 16
         targetSdkVersion 29
@@ -22,6 +34,16 @@ android {
 }
 
 dependencies {
+    // Adding for Amplify - Amplify core dependency
+    implementation 'com.amplifyframework:core:1.4.0'
+
+    // Adding for Amplify - Multidex dependency (if supporting min SDK < 21)
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    // Adding for Amplify - Support for Java 8 features
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
+
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
