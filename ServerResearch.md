@@ -70,18 +70,43 @@ Amplify was successfully installed and connected to the mobile app.
   
 # Baylie & Karen Meeting 10/13/20 3:30pm
 
-**Issue #60 - Initialize Amplify AWS
+**Issue #60 - Initialize Amplify AWS**
 
-Following this tutorial - (https://docs.amplify.aws/lib/project-setup/create-application/q/platform/android#n2-install-amplify-libraries)
+  Initialize Amplify AWS
+  Following this tutorial - (https://docs.amplify.aws/lib/project-setup/create-application/q/platform/android#n2-install-amplify-libraries)
 
 1) Install Amplify Libraries
-  Added scripts to the build.gradle file
+    Added scripts to the build.gradle file
 2) Provision the backend with Amplify CLI
-  Ran "amplify init" for setup
+    Run "amplify init" for setup
 3) Initialize Amplify in the application
-  Created new class "Application"
-  Added additional code to manifest file
+    Created new class "Application"
+    Added additional code to manifest file
   
+  Began setting up storage buckets
+  Following this tutorial - (https://docs.amplify.aws/lib/storage/getting-started/q/platform/android#provision-backend-storage) 
+  
+  1) Provision backend storage
+      Run "amplify add storage" on command line
+     
+      Do you want to use the default authentication and security configuration?
+         Default configuration
+      How do you want users to be able to sign in?
+        Email
+      Do you want to configure advanced settings?
+        No, I am done.
+      Provide a friendly name for your resource that will be used to label this category in the project:
+        S3FriendlyName
+      Please provide bucket name:
+        cnnappstoragebucket
+      What kind of access do you want for Authenticated users?
+        create/update, read, delete
+      What kind of access do you want for Guest users?
+        create/update, read, delete
+        
+     Push changes to the cloud
+      Run "amplify push" on command line
+     
 - Possible Architecture 1:
 ![1](arch1.png)
 
