@@ -87,7 +87,7 @@ Amplify was successfully installed and connected to the mobile app.
   Following this tutorial - (https://docs.amplify.aws/lib/storage/getting-started/q/platform/android#provision-backend-storage) 
   
   1) Provision backend storage
-      Run "amplify add storage" on command line
+      - Run "amplify add storage" on command line
      
   - 1) Do you want to use the default authentication and security configuration?
         Default configuration
@@ -105,10 +105,10 @@ Amplify was successfully installed and connected to the mobile app.
         create/update, read, delete
         
      Push changes to the cloud
-      Run "amplify push" on command line
+      - Run "amplify push" on command line
       
-   2)Initialize Amplify Storage
-      Added code to Application class to add AWDCognitoAutoPlugin and AWSS3StoragePlugin plugins
+   2) Initialize Amplify Storage
+      - Added code to Application class to add AWDCognitoAutoPlugin and AWSS3StoragePlugin plugins
      
 - Possible Architecture 1:
 ![1](arch1.png)
