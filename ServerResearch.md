@@ -89,23 +89,26 @@ Amplify was successfully installed and connected to the mobile app.
   1) Provision backend storage
       Run "amplify add storage" on command line
      
-      Do you want to use the default authentication and security configuration?
-         Default configuration
-      How do you want users to be able to sign in?
+  - 1) Do you want to use the default authentication and security configuration?
+        Default configuration
+  - 2) How do you want users to be able to sign in?
         Email
-      Do you want to configure advanced settings?
+  - 3) Do you want to configure advanced settings?
         No, I am done.
-      Provide a friendly name for your resource that will be used to label this category in the project:
+  - 4) Provide a friendly name for your resource that will be used to label this category in the project:
         S3FriendlyName
-      Please provide bucket name:
+  - 5) Please provide bucket name:
         cnnappstoragebucket
-      What kind of access do you want for Authenticated users?
+  - 6) What kind of access do you want for Authenticated users?
         create/update, read, delete
-      What kind of access do you want for Guest users?
+  - 7) What kind of access do you want for Guest users?
         create/update, read, delete
         
      Push changes to the cloud
       Run "amplify push" on command line
+      
+   2)Initialize Amplify Storage
+      Added code to Application class to add AWDCognitoAutoPlugin and AWSS3StoragePlugin plugins
      
 - Possible Architecture 1:
 ![1](arch1.png)
