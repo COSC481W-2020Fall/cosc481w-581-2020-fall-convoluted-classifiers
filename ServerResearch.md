@@ -68,7 +68,20 @@ Amplify was successfully installed and connected to the mobile app.
 
 - For the front end: AWS Amplify to connect to moblie app and 2 S3 Buckets to store the image taken on the phone and return the results. 
   
+# Baylie & Karen Meeting 10/13/20 3:30pm
 
+**Issue #60 - Initialize Amplify AWS
+
+Following this tutorial - (https://docs.amplify.aws/lib/project-setup/create-application/q/platform/android#n2-install-amplify-libraries)
+
+1) Install Amplify Libraries
+  Added scripts to the build.gradle file
+2) Provision the backend with Amplify CLI
+  Ran "amplify init" for setup
+3) Initialize Amplify in the application
+  Created new class "Application"
+  Added additional code to manifest file
+  
 - Possible Architecture 1:
 ![1](arch1.png)
 
