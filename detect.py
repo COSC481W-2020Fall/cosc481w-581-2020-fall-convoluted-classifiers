@@ -3,27 +3,27 @@ from imageai.Detection import ObjectDetection
 from PIL import Image 
 from os import path, listdir, makedirs
 from sys import exit
+from time import time
 
 
 def scan_image(image_file, output_file, min_prob, detector):
     return_ = False
 
-    
-
-    returned_image, detection = detector.detectCustomObjectsFromImage(      #everything that is detected from the image
+    _, detection, crops = detector.detectCustomObjectsFromImage(      #everything that is detected from the image
         custom_objects=detector.CustomObjects(dog=True),            #dog is set to true for presence of a dog
         input_image=image_file,                 #image file is stored for positive dog
         output_type='array',
         display_percentage_probability=False,           #Don't display the probability here 
         display_object_name=False,              #Don't display the object name
-        minimum_percentage_probability=min_prob             #setting the minimum probability to 60
+        minimum_percentage_probability=min_prob,             #setting the minimum probability to 60
+        extract_detected_objects=True
     )
 
     if detection != []:
-        for item in detection:
+        for item, image in zip(detection, crops):
             print(f'{image_file} => yes - {item["name"]}: {item["percentage_probability"]} - file: {output_file}')          #Output if dog is positive, image file, yes, probability
-        img = Image.fromarray(returned_image)           #Save the returned image
-        img.save(output_file)           #Save the image in the output file
+            img = Image.fromarray(image)           #Save the returned image
+            img.save(output_file)           #Save the image in the output file
         return_ = True
     else:
         print(f'{image_file} => no dog found with {min_prob}% probability')         #There is no dog found message
@@ -62,10 +62,12 @@ def detect (input, output_path):                #Detection function
         from download_model import download_model                       #Download model if it is not valid
         download_model()
 
+    t0 = time()
     detector.setModelTypeAsYOLOv3()                         #Call these 3 Model methods for detection
     detector.setModelPath(model_path)
     detector.loadModel()
-
+    t1 = time()
+    print("Model Loaded", t1-t0)
     found = 1
     min_probability = 60                        #Minimum probability is set to 60
     for image in images:
@@ -77,6 +79,7 @@ def detect (input, output_path):                #Detection function
         )
         if find:
             found += 1                   #Add 1 to found number each time of positive result
+    print("Completed", time()-t1)
 
 
 if __name__ == '__main__':
