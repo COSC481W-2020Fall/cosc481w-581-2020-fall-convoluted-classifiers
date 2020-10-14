@@ -1,10 +1,13 @@
 ### Project specific###
 # Ignore specific images
 test_images/
-.output/*.jpg
-.output/*.JPG
-.output/*.jpeg
-.output/*.png
+*/.output/*.jpg
+*/.output/*.JPG
+*/.output/*.jpeg
+*/.output/*.png
+image_dataset/*
+!image_dataset/*.md
+!image_dataset/*.py
 
 # Ignore models
 models/*.h5
