@@ -5,6 +5,7 @@
 - [09-18-2020](#09-18-2020)
 - [09-25-2020](#09-25-2020)
 - [10-05-2020](#10-05-2020)
+- [10-12-2020](#10-12-2020)
 
 # 09-08-2020
 - Discuss tentative items and make them actual
@@ -100,3 +101,33 @@
 - Make an activities log for items that don't necessarily have commits
 - Make tasks clearer and more actionable as research goes on
 - Adjourn meet at 8:02pm
+
+# 10-12-2020
+- Meeting called to order at 7:38
+  - Everyone present
+  - Yao is tardy
+- Cropping images
+  - Complete ready to merge
+  - Cropped image will be returned
+  - Front end different sizing will be fine
+- Classification
+  - Transfer learning a model
+  - 2 weeks will have a model for continued training
+    - Small progress report for next week
+  - Local training
+    - If too long, will do on AWS sagemaker
+  - Following some tutorials
+    - [Kaggle](https://www.kaggle.com/halmogdady/dl-transfer-learning-multi-cnn-s-comparison)
+  - Going to find a stanford model?
+  - Looking at a YOLO model, training and using it as a classifier
+- Pivot?
+  - No
+  - AWS cli will be able to handle sending image to S3
+  - AWS can handle rest
+  - Looking at AWS stuff thursday 7pm
+    - Will record meeting for cassie
+- Wrap-up
+  - Jacob will look at yolo to detect dog breeds
+  - Yao will look at different models
+  - Jacob, Karen, Baylie, Yao, and Dr. Jiang will set up AWS thursday
+- Meeting ended at 8:04pm
