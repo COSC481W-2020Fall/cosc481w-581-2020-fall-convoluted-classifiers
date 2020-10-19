@@ -6,6 +6,7 @@
 - [09-25-2020](#09-25-2020)
 - [10-05-2020](#10-05-2020)
 - [10-12-2020](#10-12-2020)
+- [Meeting 10-19-2020](#meeting-10-19-2020)
 
 # 09-08-2020
 - Discuss tentative items and make them actual
@@ -131,3 +132,6 @@
   - Yao will look at different models
   - Jacob, Karen, Baylie, Yao, and Dr. Jiang will set up AWS thursday
 - Meeting ended at 8:04pm
+
+# Meeting 10-19-2020
+- 
