@@ -136,8 +136,8 @@
 # 10-19-2020
 - Meeting called to order at 7:33pm
   - All present
-- [Meeting Recording]()
-- [Meeting Transcript]()
+- [Meeting Recording](https://emich.zoom.us/rec/share/B5dDNAv6AICOHm40H_s2JmUhsx_SI_hdvexNR5y0kxVMWPGuRHs88_tA8D3JQP32.kzRHZ3k1AHfZUL4x)
+- [Meeting Transcript](https://emich.zoom.us/rec/share/pXK_OCiVCN70EJh079XmtTwmeHInDEPAvD4xQqO7vJ-NFoQHMrVE6AQm6uwjDhks.08tKxHoCJSM_i2pc)
 - Dr. Jiang shows us how to connect Android studio with AWS
   - [Her tutorial](https://www.youtube.com/watch?v=b7GPq6xUjfE&ab_channel=RobinsonProgramming.com)
   - https://stackoverflow.com/questions/2914105/what-is-install-parse-failed-no-certificates-error
