@@ -6,6 +6,7 @@
 - [09-25-2020](#09-25-2020)
 - [10-05-2020](#10-05-2020)
 - [10-12-2020](#10-12-2020)
+- [10-19-2020](#10-19-2020)
 
 # 09-08-2020
 - Discuss tentative items and make them actual
@@ -131,3 +132,14 @@
   - Yao will look at different models
   - Jacob, Karen, Baylie, Yao, and Dr. Jiang will set up AWS thursday
 - Meeting ended at 8:04pm
+
+# 10-19-2020
+- Meeting called to order at 7:33pm
+  - All present
+- [Meeting Recording]()
+- [Meeting Transcript]()
+- Dr. Jiang shows us how to connect Android studio with AWS
+  - [Her tutorial](https://www.youtube.com/watch?v=b7GPq6xUjfE&ab_channel=RobinsonProgramming.com)
+  - https://stackoverflow.com/questions/2914105/what-is-install-parse-failed-no-certificates-error
+  - https://stackoverflow.com/questions/45940861/android-8-cleartext-http-traffic-not-permitted 
+- Meeting adjured at 8:22pm
