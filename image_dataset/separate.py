@@ -7,8 +7,8 @@ from random import random
 def separate(train_prc=.90):
     # Directories to ensure propper usage
     image_dir = join(".", "image_dataset", "Images")
-    train_dir = join(".", "image_dataset", "Training")
-    test_dir = join(".", "image_dataset", "Testing")
+    train_dir = join(".", "image_dataset", "train")
+    test_dir = join(".", "image_dataset", "test")
     
     # Making sure images are already downloaded, and if not downloading them
     if not isdir(image_dir):
