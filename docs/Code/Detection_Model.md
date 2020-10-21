@@ -1,0 +1,2 @@
+# Detection Model
+Our model is [YOLO](https://github.com/OlafenwaMoses/ImageAI/releases/tag/1.0/) (You only look once) v3. We are using this because it has given us better results at a higher confidence than it's tiny counterpart. We plan to use this as a detector and to crop the image of the dog. The cropped image will be used to perform a classification of what breed it is.
