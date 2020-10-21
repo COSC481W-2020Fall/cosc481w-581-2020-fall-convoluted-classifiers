@@ -59,8 +59,8 @@ def detect (input, output_path):                #Detection function
     model_dir = path.join(".", "models")                #New directory that combines the path with .models
     model_path = path.join(model_dir,"yolo.h5")                 #Takes new directory and attaches it to yolo.h5
     if not path.isfile(model_path):
-        from download_model import download_model                       #Download model if it is not valid
-        download_model()
+        from download_model import download_yolo                       #Download model if it is not valid
+        download_yolo()
 
     t0 = time()
     detector.setModelTypeAsYOLOv3()                         #Call these 3 Model methods for detection
