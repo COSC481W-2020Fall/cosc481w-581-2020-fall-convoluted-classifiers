@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity
             //Checks if File exists
             if (imgFile.exists())
             {
+                //Displays image taken
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 myImage.setImageBitmap(myBitmap);
                 //Stores the image under the gallery
