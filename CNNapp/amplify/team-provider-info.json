@@ -10,6 +10,11 @@
       "StackName": "amplify-cnnapp-dev-171326",
       "StackId": "arn:aws:cloudformation:us-east-1:412741518767:stack/amplify-cnnapp-dev-171326/1bba3da0-09ab-11eb-80b1-0ade2cf02d6d",
       "AmplifyAppId": "d12jlnve1dz3gs"
+    },
+    "categories": {
+      "auth": {
+        "cnnappdf49be72": {}
+      }
     }
   }
 }

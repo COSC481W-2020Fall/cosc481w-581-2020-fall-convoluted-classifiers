@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -25,16 +26,24 @@ public class MainActivity extends AppCompatActivity
     String mCurrentPhotoPath;
     ImageView myImage;
     TextView resultTextView;
+    String baseUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+
+        //REST API INSTALL CODE
+        // TODO: Replace this with your own IP address or URL.
+        baseUrl = "52.90.199.221";
+
+
         //Use activity_main.xml to style the app
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         resultTextView = (TextView) findViewById(R.id.resultTextDisplay);
         myImage = (ImageView) findViewById(R.id.pictureDisplay);
+
     }
 
     @Override
@@ -61,6 +70,17 @@ public class MainActivity extends AppCompatActivity
         //Display results (yes/no)
         resultTextView.setVisibility(View.VISIBLE);
         resultTextView.setText("Results go here");
+
+        //REST API INSTALL CODE
+        try {
+            ApiAuthenticationClient apiAuthenticationClient =
+                    new ApiAuthenticationClient(baseUrl);
+
+            AsyncTask<Void, Void, String> execute = new ExecuteNetworkOperation(apiAuthenticationClient);
+            execute.execute();
+        } catch (Exception ex) {
+        }
+
     }
 
     public void onButtonClick(View v)
@@ -117,4 +137,64 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
+    //REST API INSTALL CODE
+    /**
+     * This subclass handles the network operations in a new thread.
+     * It starts the progress bar, makes the API call, and ends the progress bar.
+     */
+    public class ExecuteNetworkOperation extends AsyncTask<Void, Void, String> {
+
+        private ApiAuthenticationClient apiAuthenticationClient;
+        private String isValidCredentials;
+
+        /**
+         * Overload the constructor to pass objects to this class.
+         */
+        public ExecuteNetworkOperation(ApiAuthenticationClient apiAuthenticationClient) {
+            this.apiAuthenticationClient = apiAuthenticationClient;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            try {
+                isValidCredentials = apiAuthenticationClient.execute();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            // Login Success
+            if (isValidCredentials.equals("true")) {
+                goToSecondActivity();
+            }
+        }
+    }
+
+    /**
+     * Open a new activity window.
+     */
+    private void goToSecondActivity() {
+        Bundle bundle = new Bundle();
+        bundle.putString("baseUrl", baseUrl);
+
+        Intent intent = new Intent(this, SecondActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 }
+
+
+
+
+
