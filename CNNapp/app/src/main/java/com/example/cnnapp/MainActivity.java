@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity
             super.onPreExecute();
         }
 
+        /* Sends request to server */
         @Override
         protected String doInBackground(Void... params) {
             try {
