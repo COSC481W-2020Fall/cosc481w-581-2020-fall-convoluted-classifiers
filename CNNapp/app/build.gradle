@@ -34,12 +34,21 @@ android {
 
     testOptions {
         unitTests.returnDefaultValues = true
+
+        //Required -- Robolectric
+        unitTests {
+            includeAndroidResources = true
+        }
     }
+
 }
 
 dependencies {
     // Required -- JUnit 4 framework
     testImplementation 'junit:junit:4.12'
+
+    // Required -- Robolectric
+    testImplementation 'org.robolectric:robolectric:4.4'
 
     // Adding for Amplify - Amplify core dependency
     implementation 'com.amplifyframework:core:1.4.0'
