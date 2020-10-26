@@ -7,6 +7,7 @@
 - [10-05-2020](#10-05-2020)
 - [10-12-2020](#10-12-2020)
 - [10-19-2020](#10-19-2020)
+- [10-26-2020](#10-26-2020)
 
 # 09-08-2020
 - Discuss tentative items and make them actual
@@ -143,3 +144,20 @@
   - https://stackoverflow.com/questions/2914105/what-is-install-parse-failed-no-certificates-error
   - https://stackoverflow.com/questions/45940861/android-8-cleartext-http-traffic-not-permitted 
 - Meeting adjured at 8:22pm
+
+# 10-26-2020
+- Meeting called to order at 7:34 pm
+  - Everybody present
+- Karen won't be present at in-class discussion Monday Nov. 2nd
+- This week should be able to get project feature complete
+- Tasks:
+  - Cassie and Jacob: (Meeting at 7:30 Wed)
+    - Server stuff and flask
+    - Python 3.7
+    - Set up users also
+    - GPUs on the server?
+  - Yao and Jacob: Adjust code for an always hot due by Wed @ 7:30
+  - Yao and Dr. Jiang: Will begin training more and better(?) model for eventually
+  - Yao: Compress current model and upload to EC2 instance
+  - Bailey, Karen, and Jacob: Well meet and iron everything out with the app
+- Meetin adjured at 7:54pm
