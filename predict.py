@@ -28,12 +28,12 @@ def scan_image(image_path):
 
     return images_array
 
-def predict(image_path, labels_path, my_model):
+def predict(image_path, labels, my_model):
     prediction = my_model.predict(scan_image(image_path))
-    print(
-        "This image most likely belongs to {} with a {:.2f} percent confidence."
-            .format(load_labels(labels_path)[np.argmax(prediction)], 100 * np.max(prediction))
-    )
+    pred = "This image most likely belongs to {} with a {:.2f} percent confidence."
+            .format(labels[np.argmax(prediction)], 100 * np.max(prediction))
+    print(pred)
+    return pred
 
 if __name__ == '__main__':
     prediction_model = make_model("model_4")
