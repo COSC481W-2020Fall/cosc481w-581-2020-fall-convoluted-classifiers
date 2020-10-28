@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 myImage.setImageBitmap(myBitmap);
                 //Stores the image under the gallery
-                MediaStore.Images.Media.insertImage(getContentResolver(), myBitmap, "title", "disc");
+                MediaStore.Images.Media.insertImage(getContentResolver(), myBitmap, new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()), null);
                 Toast.makeText(this, "Image Taken", Toast.LENGTH_LONG).show();
             }
         }
@@ -80,7 +81,6 @@ public class MainActivity extends AppCompatActivity
             execute.execute();
         } catch (Exception ex) {
         }
-
     }
 
     public void onButtonClick(View v)
@@ -171,6 +171,7 @@ public class MainActivity extends AppCompatActivity
             return null;
         }
 
+        /* Opens second activity to display results */
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
