@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity
 
         //REST API INSTALL CODE
         // TODO: Replace this with your own IP address or URL.
-        baseUrl = "52.90.199.221";
+        baseUrl = "http://3.83.225.183:4201/";
 
 
         //Use activity_main.xml to style the app
