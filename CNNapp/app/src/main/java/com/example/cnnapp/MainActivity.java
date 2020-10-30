@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity
     /**
      * Open a new activity window.
      */
-    private void goToSecondActivity() {
+    public void goToSecondActivity() {
         Bundle bundle = new Bundle();
         bundle.putString("baseUrl", baseUrl);
 
