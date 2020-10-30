@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity
         // TODO: Replace this with your own IP address or URL.
         baseUrl = "http://3.83.225.183:4201/";
 
-
         //Use activity_main.xml to style the app
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

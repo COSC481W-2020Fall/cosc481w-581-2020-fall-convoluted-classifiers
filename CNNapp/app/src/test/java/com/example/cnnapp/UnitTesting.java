@@ -67,11 +67,6 @@ public class UnitTesting
     public void testOpeningSecondActivity() throws NullPointerException
     {
         activity.goToSecondActivity();
-     /*   shadowOf(getMainLooper()).idle();
-        Intent expectedIntent = new Intent(activity, SecondActivity.class);
-        Intent actual = shadowOf(RuntimeEnvironment.application).getNextStartedActivity();
-        assertEquals(expectedIntent.getComponent(), actual.getComponent());
-*/
     }
 }
 

@@ -232,7 +232,7 @@ public class ApiAuthenticationClient {
                 urlString.append("/" + urlPath);
             }
 
-            /* Will need POST to send image to the server*/
+            /* Will need POST to send image to the server */
             if (parameters.size() > 0 && httpMethod.equals("GET")) {
                 payload = getPayloadAsString();
                 urlString.append("?" + payload);
@@ -278,7 +278,7 @@ public class ApiAuthenticationClient {
                 //connection.
                 BufferedReader in = new BufferedReader(new InputStreamReader(content));
 
-                /* Receiving the results from the server - change to receive an image */
+                /* Receiving the results from the server */
                 while ((line = in.readLine()) != null) {
                     outputStringBuilder.append(line);
                 }
