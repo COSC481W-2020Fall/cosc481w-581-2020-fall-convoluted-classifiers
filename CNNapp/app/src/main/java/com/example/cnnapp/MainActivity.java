@@ -35,7 +35,9 @@ public class MainActivity extends AppCompatActivity
 
         //REST API INSTALL CODE
         // TODO: Replace this with your own IP address or URL.
-        baseUrl = "http://3.83.225.183:4201/";
+        // this is my server, which returns a html, you can use this as a test
+        // let me know when you are done, and I may close the server
+        baseUrl = "http://54.146.239.104:5000/";
 
         //Use activity_main.xml to style the app
         super.onCreate(savedInstanceState);
@@ -67,10 +69,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        //Display results (yes/no)
-        resultTextView.setVisibility(View.VISIBLE);
-        resultTextView.setText("Results go here");
-
         //REST API INSTALL CODE
         try {
             ApiAuthenticationClient apiAuthenticationClient =
@@ -80,6 +78,7 @@ public class MainActivity extends AppCompatActivity
             execute.execute();
         } catch (Exception ex) {
         }
+
     }
 
     public void onButtonClick(View v)
@@ -145,7 +144,7 @@ public class MainActivity extends AppCompatActivity
     public class ExecuteNetworkOperation extends AsyncTask<Void, Void, String> {
 
         private ApiAuthenticationClient apiAuthenticationClient;
-        private String isValidCredentials;
+        private String returnValue;
 
         /**
          * Overload the constructor to pass objects to this class.
@@ -163,7 +162,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected String doInBackground(Void... params) {
             try {
-                isValidCredentials = apiAuthenticationClient.execute();
+                returnValue = apiAuthenticationClient.execute();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -176,9 +175,9 @@ public class MainActivity extends AppCompatActivity
             super.onPostExecute(result);
 
             // Login Success
-            if (isValidCredentials.equals("true")) {
-                goToSecondActivity();
-            }
+            //Display results (yes/no)
+            resultTextView.setVisibility(View.VISIBLE);
+            resultTextView.setText(apiAuthenticationClient.getLastResponse());
         }
     }
 
