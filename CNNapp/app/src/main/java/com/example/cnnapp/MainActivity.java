@@ -34,10 +34,7 @@ public class MainActivity extends AppCompatActivity
     {
 
         //REST API INSTALL CODE
-        // TODO: Replace this with your own IP address or URL.
-        // this is my server, which returns a html, you can use this as a test
-        // let me know when you are done, and I may close the server
-        baseUrl = "http://54.146.239.104:5000/";
+        baseUrl = "http://3.83.225.183:4201/query/";;
 
         //Use activity_main.xml to style the app
         super.onCreate(savedInstanceState);
