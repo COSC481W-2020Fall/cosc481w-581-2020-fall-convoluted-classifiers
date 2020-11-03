@@ -8,6 +8,7 @@
 - [10-12-2020](#10-12-2020)
 - [10-19-2020](#10-19-2020)
 - [10-26-2020](#10-26-2020)
+- [11-02-2020](#11-02-2020)
 
 # 09-08-2020
 - Discuss tentative items and make them actual
@@ -160,4 +161,16 @@
   - Yao and Dr. Jiang: Will begin training more and better(?) model for eventually
   - Yao: Compress current model and upload to EC2 instance
   - Bailey, Karen, and Jacob: Well meet and iron everything out with the app
-- Meetin adjured at 7:54pm
+- Meeting adjured at 7:54pm
+  
+# 11-02-2020
+- Meeting called to order at 7:32 pm
+  - Yao Absent, else present
+- Goals for the week
+  - Connect app to server
+  - Send image to server
+  - Retrieve breed from server
+  - Testing detection
+  - Clean up github repo
+  - Build better model
+- Meeting adjured at 7:40 pm
