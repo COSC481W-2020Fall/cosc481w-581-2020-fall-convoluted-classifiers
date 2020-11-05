@@ -20,7 +20,7 @@ def main():
     OUTPUT_DIR     = join("..", "output")
     SECONDS_IN_DAY = 86400
 
-    model = None # make_model(PATH)
+    model = make_model(join("..", "models", "model_4"))
     labels = load_labels("labels.txt")
 
     dir_contents = scandir(SCAN_PATH)
@@ -29,7 +29,7 @@ def main():
         if len(dir_contents) != 0:
             image = dir_contents.pop(0)
             prediction = predict(join(SCAN_PATH, dir_contents), labels, model)
-            with open(join(OUTPUT_DIR, image.split(".")+".txt", "w+") as file:
+            with open(join(OUTPUT_DIR, image.split(".")+".txt", "w+")) as file:
                 file.write(predict)
 
     
