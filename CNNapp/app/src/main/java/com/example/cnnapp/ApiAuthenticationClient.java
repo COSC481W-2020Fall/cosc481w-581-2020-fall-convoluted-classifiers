@@ -1,6 +1,8 @@
 //REST API INSTALL CODE
 package com.example.cnnapp;
 
+import android.graphics.Bitmap;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,8 +25,7 @@ import java.util.Map;
 public class ApiAuthenticationClient {
 
     private String baseUrl;
-    private String username;
-    private String password;
+    private Bitmap myImage;
     private String urlResource;
     private String httpMethod; // GET, POST, PUT, DELETE
     private String urlPath;
@@ -37,10 +38,9 @@ public class ApiAuthenticationClient {
      *  @param baseUrl String
      *
      */
-    public ApiAuthenticationClient(String baseUrl) {
+    public ApiAuthenticationClient(String baseUrl, Bitmap myImage) {
         setBaseUrl(baseUrl);
-        this.username = username;
-        this.password = password;
+        this.myImage = myImage;
         this.urlResource = "";
         this.urlPath = "";
         this.httpMethod = "GET";
@@ -158,8 +158,7 @@ public class ApiAuthenticationClient {
     public ApiAuthenticationClient clearAll() {
         parameters.clear();
         baseUrl = "";
-        this.username = "";
-        this.password = "";
+        //this.myImage;
         this.urlResource = "";
         this.urlPath = "";
         this.httpMethod = "";
@@ -245,7 +244,7 @@ public class ApiAuthenticationClient {
             /* Connection from the App to AWS */
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod(httpMethod);
-            connection.setRequestProperty("Authorization", "Basic ");
+            connection.setRequestProperty("Authorization", "Basic " + myImage);
             connection.setRequestProperty("Accept", "application/json");
             connection.setRequestProperty("Content-Type", "text/plain");
 

@@ -28,13 +28,16 @@ public class MainActivity extends AppCompatActivity
     ImageView myImage;
     TextView resultTextView;
     String baseUrl;
+    Bitmap myBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
 
         //REST API INSTALL CODE
-        baseUrl = "http://3.83.225.183:4201/query/";;
+        baseUrl = "http://3.88.49.82:4201/query/";
+        //3.83.225.183
+        //3.88.49.82
 
         //Use activity_main.xml to style the app
         super.onCreate(savedInstanceState);
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity
             if (imgFile.exists())
             {
                 //Displays image taken
-                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 myImage.setImageBitmap(myBitmap);
                 //Stores the image under the gallery
                 MediaStore.Images.Media.insertImage(getContentResolver(), myBitmap, new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()), null);
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity
         //REST API INSTALL CODE
         try {
             ApiAuthenticationClient apiAuthenticationClient =
-                    new ApiAuthenticationClient(baseUrl);
+                    new ApiAuthenticationClient(baseUrl, myBitmap);
 
             AsyncTask<Void, Void, String> execute = new ExecuteNetworkOperation(apiAuthenticationClient);
             execute.execute();
