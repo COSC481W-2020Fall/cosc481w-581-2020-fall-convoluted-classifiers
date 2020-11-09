@@ -36,8 +36,7 @@ public class MainActivity extends AppCompatActivity
 
         //REST API INSTALL CODE
         baseUrl = "http://3.88.49.82:4201/query/";
-        //3.83.225.183
-        //3.88.49.82
+        //http://3.88.49.82:4201/breed/[IMAGE_NAME]
 
         //Use activity_main.xml to style the app
         super.onCreate(savedInstanceState);
