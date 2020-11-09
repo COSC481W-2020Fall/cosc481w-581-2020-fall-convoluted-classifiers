@@ -1,4 +1,4 @@
-Meeting on 10/29/20 - Karen, Baylie & Jacob
+###Meeting on 10/29/20 - Karen, Baylie & Jacob
 
 Attempted to connect the AWS server to the Android App using the REST API, however, we were unsuccessful. 
 
