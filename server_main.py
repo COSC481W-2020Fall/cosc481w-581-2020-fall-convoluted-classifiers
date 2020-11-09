@@ -17,7 +17,8 @@ if gpus:
 
 # Main function, will contain main loop and self reset protical
 def main():
-    HOME           = dirname(dirname(realpath(__file__)))
+    THIS_DIR       = dirname(realpath(__file__))
+    HOME           = dirname(THIS_DIR)
     SCAN_PATH      = join(HOME, "images")
     OUTPUT_DIR     = join(HOME, "output")
     COMPLETE_DIR   = join(HOME, "complete")
@@ -25,7 +26,7 @@ def main():
     debug = False
 
     model = predict.make_model(join(HOME, "models", "model_4"))
-    labels = predict.load_labels("labels.txt")
+    labels = predict.load_labels(join(THIS_DIR, "labels.txt"))
 
     t0 = time()
     while (time() - t0 < SECONDS_IN_DAY):
