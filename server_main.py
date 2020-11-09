@@ -2,7 +2,7 @@ import predict
 import tensorflow as tf
 from os.path import join
 from os import scandir, environ, rename
-from time import time
+from time import time, sleep
 
 # slience debugging logs and warning messages or 'deprecated' warning
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
@@ -26,10 +26,11 @@ def main():
 
     t0 = time()
     while (time() - t0 < SECONDS_IN_DAY):
+        sleep(.05)
         try:
             dir_contents = scandir(SCAN_PATH)
             image     = dir_contents[0]
-            moved_img = join(COMPLETE_DIR, image.split(SCAN_PATH)[-1])
+            moved_img = join(COMPLETE_DIR, image.split('/')[-1])
             prediction = predict.predict(join(SCAN_PATH, dir_contents), labels, model)
             with open(join(OUTPUT_DIR, image.split(".")+".txt", "w+")) as file:
                 file.write(prediction)
