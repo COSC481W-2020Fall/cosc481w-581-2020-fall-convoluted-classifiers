@@ -29,8 +29,8 @@ def main():
         sleep(.05)
         try:
             dir_contents = scandir(SCAN_PATH)
-            image     = dir_contents[0]
-            moved_img = join(COMPLETE_DIR, image.split('/')[-1])
+            image     = join(SCAN_PATH, dir_contents[0])
+            moved_img = join(COMPLETE_DIR, dir_contents[0])
             prediction = predict.predict(join(SCAN_PATH, dir_contents), labels, model)
             with open(join(OUTPUT_DIR, image.split(".")+".txt", "w+")) as file:
                 file.write(prediction)
