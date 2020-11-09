@@ -16,12 +16,12 @@ if gpus:
 
 # Main function, will contain main loop and self reset protical
 def main():
-    SCAN_PATH      = join("..", "images")
-    OUTPUT_DIR     = join("..", "output")
-    COMPLETE_DIR   = join("..", "complete")
+    SCAN_PATH      = join("~", "images")
+    OUTPUT_DIR     = join("~", "output")
+    COMPLETE_DIR   = join("~", "complete")
     SECONDS_IN_DAY = 86400
 
-    model = predict.make_model(join("..", "models", "model_4"))
+    model = predict.make_model(join("~", "models", "model_4"))
     labels = predict.load_labels("labels.txt")
 
     t0 = time()
