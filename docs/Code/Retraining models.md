@@ -17,9 +17,9 @@ Result:
  - [ ] The accuracy of the model using MobileNetV2 can go up to 0.7 really quick in 10 epochs
  - [ ] have to increase the accuracy
 
-
-
-
-```python
-
-```
+### Hyperparameter tuning
+ - [ ] have not got an ideal result
+ 
+### Problems
+ - [ ] the accuracy does not increase over 0.8
+ - [ ] need help on build a model for better performance
