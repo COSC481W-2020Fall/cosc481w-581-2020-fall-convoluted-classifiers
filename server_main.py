@@ -22,7 +22,7 @@ def main():
     OUTPUT_DIR     = join(HOME, "output")
     COMPLETE_DIR   = join(HOME, "complete")
     SECONDS_IN_DAY = 86400
-    debug = True
+    debug = False
 
     model = predict.make_model(join(HOME, "models", "model_4"))
     labels = predict.load_labels("labels.txt")
