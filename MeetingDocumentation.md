@@ -22,3 +22,7 @@ As well, the flask file was not published to the repo, so we were not able to ad
 **Update on 11/8/20 - Baylie**
 
 Jacob implemented some sort of quick fix to get a server up and running. I was able to connect and recieve our feedback data from the server, however, the flask file has still not been published to the repo for us to make changes. I am communicating with Jacob to see how we are going to send the dog breed back to the mobile app.
+
+I was also able to take a picture of a dog on the moblie application through my personal device and the dog image was displayed properly.
+
+![Dog Image](DogImage_CNNApp.jpg)
