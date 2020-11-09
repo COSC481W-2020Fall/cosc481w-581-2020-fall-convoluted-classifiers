@@ -31,11 +31,13 @@ def main():
         sleep(.05)
         try:
             dir_contents = listdir(SCAN_PATH)
-            image     = join(SCAN_PATH, dir_contents[0])
-            moved_img = join(COMPLETE_DIR, dir_contents[0])
-            prediction = predict.predict(join(SCAN_PATH, dir_contents), labels, model)
-            with open(join(OUTPUT_DIR, image.split(".")+".txt", "w+")) as file:
-                file.write(prediction)
+            first = dir_contents[0]
+            if debug: print(first)
+            image     = join(SCAN_PATH, first)
+            moved_img = join(COMPLETE_DIR, first)
+            prediction = predict.predict(image, labels, model)
+            with open(join(OUTPUT_DIR, first.split(".")[0]+".txt"), "w+") as file:
+                file.write(str(prediction))
             rename(image, moved_img)
         except Exception as e:
             if debug: print(e)
