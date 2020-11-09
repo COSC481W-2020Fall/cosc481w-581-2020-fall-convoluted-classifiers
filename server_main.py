@@ -1,6 +1,6 @@
 import predict
 import tensorflow as tf
-from os.path import join
+from os.path import join, dirname, realpath
 from os import scandir, environ, rename
 from time import time, sleep
 
@@ -16,12 +16,13 @@ if gpus:
 
 # Main function, will contain main loop and self reset protical
 def main():
-    SCAN_PATH      = join("~", "images")
-    OUTPUT_DIR     = join("~", "output")
-    COMPLETE_DIR   = join("~", "complete")
+    HOME           = dirname(dirname(realpath(__file__)))
+    SCAN_PATH      = join(HOME, "images")
+    OUTPUT_DIR     = join(HOME, "output")
+    COMPLETE_DIR   = join(HOME, "complete")
     SECONDS_IN_DAY = 86400
 
-    model = predict.make_model(join("..", "models", "model_4"))
+    model = predict.make_model(join(HOME, "models", "model_4"))
     labels = predict.load_labels("labels.txt")
 
     t0 = time()
