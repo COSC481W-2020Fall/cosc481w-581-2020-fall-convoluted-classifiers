@@ -1,7 +1,8 @@
 import predict
 import tensorflow as tf
 from os.path import join, dirname, realpath
-from os import listdir, environ, rename
+from os import listdir, environ
+from shutil import move
 from time import time, sleep
 
 # slience debugging logs and warning messages or 'deprecated' warning
@@ -38,7 +39,7 @@ def main():
             prediction = predict.predict(image, labels, model)
             with open(join(OUTPUT_DIR, first.split(".")[0]+".txt"), "w+") as file:
                 file.write(str(prediction))
-            rename(image, moved_img)
+            move(image, moved_img)
         except Exception as e:
             if debug: print(e)
 
