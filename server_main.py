@@ -26,14 +26,17 @@ def main():
 
     t0 = time()
     while (time() - t0 < SECONDS_IN_DAY):
-        dir_contents = scandir(SCAN_PATH)
-        if len(dir_contents) != 0:
-            image     = dir_contents.pop(0)
+        try:
+            dir_contents = scandir(SCAN_PATH)
+            image     = dir_contents[0]
             moved_img = join(COMPLETE_DIR, image.split(SCAN_PATH)[-1])
             prediction = predict.predict(join(SCAN_PATH, dir_contents), labels, model)
             with open(join(OUTPUT_DIR, image.split(".")+".txt", "w+")) as file:
                 file.write(prediction)
             rename(image, moved_img)
+        except:
+            pass
+
 
     
 if __name__ == '__main__':
