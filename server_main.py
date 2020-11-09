@@ -1,7 +1,7 @@
 import predict
 import tensorflow as tf
 from os.path import join, dirname, realpath
-from os import scandir, environ, rename
+from os import listdir, environ, rename
 from time import time, sleep
 
 # slience debugging logs and warning messages or 'deprecated' warning
@@ -29,7 +29,7 @@ def main():
     while (time() - t0 < SECONDS_IN_DAY):
         sleep(.05)
         try:
-            dir_contents = scandir(SCAN_PATH)
+            dir_contents = listdir(SCAN_PATH)
             image     = join(SCAN_PATH, dir_contents[0])
             moved_img = join(COMPLETE_DIR, dir_contents[0])
             prediction = predict.predict(join(SCAN_PATH, dir_contents), labels, model)
