@@ -21,7 +21,7 @@ def main():
     COMPLETE_DIR   = join("~", "complete")
     SECONDS_IN_DAY = 86400
 
-    model = predict.make_model(join("~", "models", "model_4"))
+    model = predict.make_model(join("..", "models", "model_4"))
     labels = predict.load_labels("labels.txt")
 
     t0 = time()
