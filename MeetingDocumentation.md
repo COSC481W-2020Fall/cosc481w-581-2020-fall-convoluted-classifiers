@@ -25,4 +25,4 @@ Jacob implemented some sort of quick fix to get a server up and running. I was a
 
 I was also able to take a picture of a dog on the moblie application through my personal device and the dog image was displayed properly.
 
-![Dog Image](DogImage_CNNApp.jpg)
+![Dog Image](DogImage_CNNapp.jpg)
