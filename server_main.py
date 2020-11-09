@@ -21,6 +21,7 @@ def main():
     OUTPUT_DIR     = join(HOME, "output")
     COMPLETE_DIR   = join(HOME, "complete")
     SECONDS_IN_DAY = 86400
+    debug = True
 
     model = predict.make_model(join(HOME, "models", "model_4"))
     labels = predict.load_labels("labels.txt")
@@ -36,8 +37,8 @@ def main():
             with open(join(OUTPUT_DIR, image.split(".")+".txt", "w+")) as file:
                 file.write(prediction)
             rename(image, moved_img)
-        except:
-            pass
+        except Exception as e:
+            if debug: print(e)
 
 
     
