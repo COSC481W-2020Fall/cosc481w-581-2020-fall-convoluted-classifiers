@@ -9,6 +9,7 @@
 - [10-19-2020](#10-19-2020)
 - [10-26-2020](#10-26-2020)
 - [11-02-2020](#11-02-2020)
+- [11-09-2020](#11-09-2020)
 
 # 09-08-2020
 - Discuss tentative items and make them actual
@@ -174,3 +175,9 @@
   - Clean up github repo
   - Build better model
 - Meeting adjured at 7:40 pm
+
+# 11-09-2020
+- Meeting called to order at 7:34 pm
+  - All present
+- Backend Code review
+- Frontend Code review
