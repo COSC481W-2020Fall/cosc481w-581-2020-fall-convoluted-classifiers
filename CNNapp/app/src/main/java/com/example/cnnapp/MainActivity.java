@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class MainActivity extends AppCompatActivity
 {
     static final int REQUEST_TAKE_PHOTO = 1;
@@ -33,10 +34,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
         //REST API INSTALL CODE
-        baseUrl = "http://3.88.49.82:4201/query/";
+        baseUrl = "http://3.82.138.53:4201/image/";
+        //baseUrl = "http://3.82.138.53:4201/image/?file=@";
         //http://3.88.49.82:4201/breed/[IMAGE_NAME]
+        //http://IP:PORT/image?file=FILENAME
 
         //Use activity_main.xml to style the app
         super.onCreate(savedInstanceState);
@@ -62,11 +64,19 @@ public class MainActivity extends AppCompatActivity
                 //Displays image taken
                 myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 myImage.setImageBitmap(myBitmap);
+
                 //Stores the image under the gallery
                 MediaStore.Images.Media.insertImage(getContentResolver(), myBitmap, new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()), null);
+
+/*                Cursor cursor = getContentResolver().query(Uri.parse(path), null, null, null, null);
+                cursor.moveToFirst();
+                int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                baseUrl += cursor.getString(idx);*/
+
                 Toast.makeText(this, "Image Taken", Toast.LENGTH_LONG).show();
             }
         }
+
 
         //REST API INSTALL CODE
         try {
@@ -77,7 +87,6 @@ public class MainActivity extends AppCompatActivity
             execute.execute();
         } catch (Exception ex) {
         }
-
     }
 
     public void onButtonClick(View v)
@@ -128,12 +137,14 @@ public class MainActivity extends AppCompatActivity
                 Uri photoURI = FileProvider.getUriForFile(this,
                         "com.example.android.fileprovider",
                         photoFile);
+
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 //Opens camera for user to take a picture
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
     }
+
 
     //REST API INSTALL CODE
     /**

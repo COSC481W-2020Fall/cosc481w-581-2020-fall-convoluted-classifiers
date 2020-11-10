@@ -2,11 +2,13 @@
 package com.example.cnnapp;
 
 import android.graphics.Bitmap;
+import android.util.Base64;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -43,8 +45,8 @@ public class ApiAuthenticationClient {
         this.myImage = myImage;
         this.urlResource = "";
         this.urlPath = "";
-        this.httpMethod = "GET";
-        parameters = new HashMap<>();
+        this.httpMethod = "POST";
+        parameters = new HashMap<String, String>();
         lastResponse = "";
         payload = "";
         headerFields = new HashMap<>();
@@ -158,7 +160,7 @@ public class ApiAuthenticationClient {
     public ApiAuthenticationClient clearAll() {
         parameters.clear();
         baseUrl = "";
-        //this.myImage;
+        this.myImage.recycle();
         this.urlResource = "";
         this.urlPath = "";
         this.httpMethod = "";
@@ -231,15 +233,21 @@ public class ApiAuthenticationClient {
                 urlString.append("/" + urlPath);
             }
 
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            myImage.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte [] byteArray = byteArrayOutputStream.toByteArray();
+            String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+            setParameter("file", encoded);
+
+            setParameters(parameters);
+
             /* Will need POST to send image to the server */
-            if (parameters.size() > 0 && httpMethod.equals("GET")) {
+            if (parameters.size() > 0 && httpMethod.equals("POST")) {
                 payload = getPayloadAsString();
                 urlString.append("?" + payload);
             }
 
             URL url = new URL(urlString.toString());
-
-            //String encoding = Base64Encoder.encode(username + ":" + password);
 
             /* Connection from the App to AWS */
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -251,7 +259,7 @@ public class ApiAuthenticationClient {
             // Make the network connection and retrieve the output from the server.
             if (httpMethod.equals("POST") || httpMethod.equals("PUT")) {
 
-                payload = getPayloadAsString();
+                //payload = getPayloadAsString();
 
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
