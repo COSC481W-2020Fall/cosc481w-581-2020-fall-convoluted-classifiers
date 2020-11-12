@@ -74,20 +74,22 @@ public class MainActivity extends AppCompatActivity
                 baseUrl += cursor.getString(idx);*/
 
                 Toast.makeText(this, "Image Taken", Toast.LENGTH_LONG).show();
+
+                //REST API INSTALL CODE
+                try {
+                    ApiAuthenticationClient apiAuthenticationClient =
+                            new ApiAuthenticationClient(baseUrl, myBitmap, imgFile);
+
+                    AsyncTask<Void, Void, String> execute = new ExecuteNetworkOperation(apiAuthenticationClient);
+                    execute.execute();
+                } catch (Exception ex) {
+                }
+            }
             }
         }
 
 
-        //REST API INSTALL CODE
-        try {
-            ApiAuthenticationClient apiAuthenticationClient =
-                    new ApiAuthenticationClient(baseUrl, myBitmap);
 
-            AsyncTask<Void, Void, String> execute = new ExecuteNetworkOperation(apiAuthenticationClient);
-            execute.execute();
-        } catch (Exception ex) {
-        }
-    }
 
     public void onButtonClick(View v)
     {

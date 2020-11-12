@@ -9,6 +9,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -28,6 +32,7 @@ public class ApiAuthenticationClient {
 
     private String baseUrl;
     private Bitmap myImage;
+    private File imageFile;
     private String urlResource;
     private String httpMethod; // GET, POST, PUT, DELETE
     private String urlPath;
@@ -40,9 +45,10 @@ public class ApiAuthenticationClient {
      *  @param baseUrl String
      *
      */
-    public ApiAuthenticationClient(String baseUrl, Bitmap myImage) {
+    public ApiAuthenticationClient(String baseUrl, Bitmap myImage, File myImageFile) {
         setBaseUrl(baseUrl);
         this.myImage = myImage;
+        this.imageFile = myImageFile;
         this.urlResource = "";
         this.urlPath = "";
         this.httpMethod = "POST";
@@ -227,46 +233,82 @@ public class ApiAuthenticationClient {
         StringBuilder outputStringBuilder = new StringBuilder();
 
         try {
+            /*
+
+            OutputStream pngFileOutputStream = new FileOutputStream(pngFile);
+            myImage.compress(Bitmap.CompressFormat.PNG, 100, pngFileOutputStream);
+            pngFileOutputStream.flush();
+            pngFileOutputStream.close();
+            */
+
+            File pngFile = new File(imageFile.getParent(), "dogImage.png");
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            myImage.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+
             StringBuilder urlString = new StringBuilder(baseUrl + urlResource);
 
             if (!urlPath.equals("")) {
                 urlString.append("/" + urlPath);
             }
 
+            /*
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             myImage.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             byte [] byteArray = byteArrayOutputStream.toByteArray();
             String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
             setParameter("file", encoded);
-
             setParameters(parameters);
 
-            /* Will need POST to send image to the server */
             if (parameters.size() > 0 && httpMethod.equals("POST")) {
                 payload = getPayloadAsString();
                 urlString.append("?" + payload);
             }
+
+            */
 
             URL url = new URL(urlString.toString());
 
             /* Connection from the App to AWS */
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod(httpMethod);
-            connection.setRequestProperty("Authorization", "Basic " + myImage);
+            //connection.setRequestProperty("Authorization", "Basic " + myImage);
             connection.setRequestProperty("Accept", "application/json");
-            connection.setRequestProperty("Content-Type", "text/plain");
+
 
             // Make the network connection and retrieve the output from the server.
             if (httpMethod.equals("POST") || httpMethod.equals("PUT")) {
 
-                //payload = getPayloadAsString();
+                String boundary = "===" + System.currentTimeMillis() + "===" ;
+                String twoHyphens = "--";
+                String crlf = "\r\n";
 
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
+                connection.setUseCaches(false);
+                //properties for sending a file via POST
+                connection.setInstanceFollowRedirects(false);
+                connection.setRequestProperty("Connection", "Keep-Alive");
+                connection.setRequestProperty("Cache-Control", "no-cache");
+                connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary); //HTTP request header
 
                 try {
-                    OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
-                    writer.write(payload);
+                    //OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
+                    //writer.write(payload);
+
+                    OutputStream outputStream = connection.getOutputStream();
+                    DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+                    //denote the beginning of a data part
+                    dataOutputStream.writeBytes(twoHyphens + boundary + crlf);
+                    dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"file\"; filename=\"" + pngFile.getName() + "\"" + crlf); //indicate the field name and the file name
+                    dataOutputStream.writeBytes("Content-Type: image/png" + crlf); //indicating file type
+                    dataOutputStream.writeBytes(crlf); //indicating the beginning of the file
+                    dataOutputStream.write(byteArray);
+                    dataOutputStream.writeBytes(crlf);
+                    dataOutputStream.writeBytes(twoHyphens + boundary + twoHyphens + crlf);
+                    dataOutputStream.flush();
+                    dataOutputStream.close();
 
                     headerFields = connection.getHeaderFields();
 
@@ -278,6 +320,7 @@ public class ApiAuthenticationClient {
                 connection.disconnect();
             }
             else {
+                connection.setRequestProperty("Content-Type", "text/plain");
                 InputStream content = (InputStream) connection.getInputStream();
 
                 headerFields = connection.getHeaderFields();
