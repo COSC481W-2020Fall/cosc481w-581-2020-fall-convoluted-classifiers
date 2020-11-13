@@ -15,8 +15,7 @@
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:background="#A9A9A9"
-        android:scaleType="fitCenter"
-        />
+        android:scaleType="fitCenter" />
 
     <!-- Button to take Picture -->
     <Button
@@ -42,6 +41,5 @@
         android:layout_marginTop="30dp"
         android:textSize="30sp"
         android:textColor="#000000"
-        android:visibility="invisible"
-        />
+        android:visibility="invisible" />
 </RelativeLayout>

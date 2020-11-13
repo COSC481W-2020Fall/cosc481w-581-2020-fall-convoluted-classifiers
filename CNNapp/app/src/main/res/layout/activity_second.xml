@@ -1,8 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <!-- REST API INSTALL CODE -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondActivity">
 
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Text for permission -->
+    <TextView
+        android:id="@+id/permissionText"
+        android:layout_below="@+id/titleText"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"
+        android:text="Allow images taken to be apart of the database, to improve future accuracy"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp" />
+
+    <!-- Permission switch -->
+    <androidx.appcompat.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleText"
+        android:layout_toRightOf="@+id/permissionText"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="30dp"
+        android:layout_toEndOf="@+id/permissionText" />
+
+</RelativeLayout>
