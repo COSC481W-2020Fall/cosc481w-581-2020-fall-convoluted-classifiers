@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SecondActivity extends AppCompatActivity
+public class ThirdActivity extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,7 +34,7 @@ public class SecondActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(@NonNull MenuItem item)
     {
         //Moves to main activity
-        Intent intent = new Intent(SecondActivity.this, MainActivity.class);
+        Intent intent = new Intent(ThirdActivity.this, MainActivity.class);
         startActivity(intent);
         return true;
     }

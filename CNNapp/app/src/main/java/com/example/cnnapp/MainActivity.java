@@ -1,5 +1,7 @@
 package com.example.cnnapp;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
@@ -8,9 +10,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     String baseUrl;
     Bitmap myBitmap;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -47,6 +54,27 @@ public class MainActivity extends AppCompatActivity
         resultTextView = (TextView) findViewById(R.id.resultTextDisplay);
         myImage = (ImageView) findViewById(R.id.pictureDisplay);
 
+    }
+
+    /* For Settings Icon */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.setting_menu, menu);
+        //Hides home button
+        MenuItem item = menu.findItem(R.id.idHome);
+        item.setVisible(false);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        //Moves to second activity (settings)
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        startActivity(intent);
+        return true;
     }
 
     @Override
@@ -191,18 +219,6 @@ public class MainActivity extends AppCompatActivity
             resultTextView.setVisibility(View.VISIBLE);
             resultTextView.setText(apiAuthenticationClient.getLastResponse());
         }
-    }
-
-    /**
-     * Open a new activity window.
-     */
-    public void goToSecondActivity() {
-        Bundle bundle = new Bundle();
-        bundle.putString("baseUrl", baseUrl);
-
-        Intent intent = new Intent(this, SecondActivity.class);
-        intent.putExtras(bundle);
-        startActivity(intent);
     }
 }
 
