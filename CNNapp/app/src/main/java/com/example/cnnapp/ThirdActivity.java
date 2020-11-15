@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +16,7 @@ public class ThirdActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_third);
     }
 
     /* For Home Icon */
@@ -37,5 +38,13 @@ public class ThirdActivity extends AppCompatActivity
         Intent intent = new Intent(ThirdActivity.this, MainActivity.class);
         startActivity(intent);
         return true;
+    }
+
+    public void onButtonClick(View v)
+    {
+        //Moves to third activity
+        Intent intent = new Intent(ThirdActivity.this, SecondActivity.class);
+        startActivity(intent);
+        //setContentView(R.layout.activity_third);
     }
 }

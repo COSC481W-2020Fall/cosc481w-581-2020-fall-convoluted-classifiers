@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,5 +38,13 @@ public class SecondActivity extends AppCompatActivity
         Intent intent = new Intent(SecondActivity.this, MainActivity.class);
         startActivity(intent);
         return true;
+    }
+
+    public void onButtonClick(View v)
+    {
+       //Moves to third activity
+        Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
+        startActivity(intent);
+        //setContentView(R.layout.activity_third);
     }
 }
