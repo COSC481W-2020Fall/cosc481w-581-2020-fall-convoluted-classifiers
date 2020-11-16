@@ -14,7 +14,7 @@
     
 ### Next step without ImageAI:
     - researching on how to add detection layer into model 
-    - reseraching on how to use Mask-R-CNN model to classify dog breeds.
+    - reseraching on how to use Mask-R-CNN model to classify dog breeds. (task of segmentation)
     - researching on how to build a model could do detection and classification together.
     
 
