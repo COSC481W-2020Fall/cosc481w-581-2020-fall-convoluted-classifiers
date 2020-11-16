@@ -31,6 +31,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity
 {
     static final int REQUEST_TAKE_PHOTO = 1;
+    String imageFileName;
     String mCurrentPhotoPath;
     ImageView myImage;
     TextView resultTextView;
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity
     {
         //Create a filename for the image
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
+        imageFileName = "dogImage_" + timeStamp + ".png";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         //Creates File
         File image = File.createTempFile(
@@ -214,8 +215,7 @@ public class MainActivity extends AppCompatActivity
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            // Login Success
-            //Display results (yes/no)
+            //Display results
             resultTextView.setVisibility(View.VISIBLE);
             resultTextView.setText(apiAuthenticationClient.getLastResponse());
         }

@@ -240,8 +240,8 @@ public class ApiAuthenticationClient {
             pngFileOutputStream.flush();
             pngFileOutputStream.close();
             */
-
-            File pngFile = new File(imageFile.getParent(), "dogImage.png");
+            //imageName = "dogImage.png";
+            File pngFile = new File(imageFile.getParent(), String.valueOf(System.nanoTime()) + ".png");
 
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             myImage.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
