@@ -1,6 +1,6 @@
 ### During previous training, the cpu and files I/O have been significantly affect training process and speed.
- - [ ] find a new way to train the model faster
- - [ ] update tensorflow from 2.2 to 2.3
+ - [x] find a new way to train the model faster
+ - [x] update tensorflow from 2.2 to 2.3
  - [ ] using new functions to use buffered prefetching to load images and do the image augmentation in the model while training instead of doing it before compile the model.
 
 Result:
