@@ -10,6 +10,7 @@
 - [10-26-2020](#10-26-2020)
 - [11-02-2020](#11-02-2020)
 - [11-09-2020](#11-09-2020)
+- [11-16-2020](#11-16-2020)
 
 # 09-08-2020
 - Discuss tentative items and make them actual
@@ -183,3 +184,7 @@
   - Jacob will copy the code and get a textual version for public view
 - Frontend Code review
 - [Code review](https://emich.zoom.us/rec/share/0Gn5rSo_2Dk1NlhY0B2o8mJXASYrpqicy3sbpTQ4H6v4YBz7symaWLfvl205JKkE.MkXQuwnz072ztiwX)
+
+# 11-16-2020
+- Meeting called to order at
+- Meeting Adjured at
