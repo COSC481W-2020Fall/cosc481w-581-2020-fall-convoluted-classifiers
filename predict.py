@@ -30,9 +30,14 @@ def scan_image(image_path):
 
 def predict(image_path, labels, my_model):
     prediction = my_model.predict(scan_image(image_path))
-    pred = "This image most likely belongs to {} with a {:.2f} percent confidence."
-            .format(labels[np.argmax(prediction)], 100 * np.max(prediction))
-    print(pred)
+    pred = {
+        "label": labels[np.argmax(prediction)],
+        "confidence": 100 * np.max(prediction)
+    }
+    print("This image most likely belongs to {} with a {:.2f} percent confidence.".format(
+        pred["label"],
+        pred["confidence"]
+    ))
     return pred
 
 if __name__ == '__main__':
