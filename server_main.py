@@ -28,8 +28,7 @@ def main():
     model = predict.make_model(join(HOME, "models", "model_4"))
     labels = predict.load_labels(join(THIS_DIR, "labels.txt"))
 
-    t0 = time()
-    while (time() - t0 < SECONDS_IN_DAY):
+    while (True):
         sleep(.05)
         try:
             dir_contents = listdir(SCAN_PATH)

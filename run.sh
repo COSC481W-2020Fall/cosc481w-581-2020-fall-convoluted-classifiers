@@ -1,1 +1,1 @@
-venv/bin/python server_main.py
+~/cosc481w-CNN/venv/bin/python ~/cosc481w-CNN/server_main.py
