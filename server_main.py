@@ -30,8 +30,8 @@ def main():
 
     while (True):
         sleep(.05)
+        dir_contents = listdir(SCAN_PATH)
         try:
-            dir_contents = listdir(SCAN_PATH)
             first = dir_contents[0]
             if debug: print(first)
             image     = join(SCAN_PATH, first)
