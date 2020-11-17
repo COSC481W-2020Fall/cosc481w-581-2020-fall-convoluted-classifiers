@@ -10,6 +10,7 @@
 - [10-26-2020](#10-26-2020)
 - [11-02-2020](#11-02-2020)
 - [11-09-2020](#11-09-2020)
+- [11-16-2020](#11-16-2020)
 
 # 09-08-2020
 - Discuss tentative items and make them actual
@@ -183,3 +184,29 @@
   - Jacob will copy the code and get a textual version for public view
 - Frontend Code review
 - [Code review](https://emich.zoom.us/rec/share/0Gn5rSo_2Dk1NlhY0B2o8mJXASYrpqicy3sbpTQ4H6v4YBz7symaWLfvl205JKkE.MkXQuwnz072ztiwX)
+
+# 11-16-2020
+- Meeting called to order at 7:35 pm
+- Finalize tasks
+  - Yao:
+    - Continue work on model stuff
+  - Karen and Baylie:
+    - Implementing more of the wireframe?
+    - Small list of things to do
+    - Cosmetic changes
+    - DataTitans informational
+    - Progress bar
+    - Place holder image
+    - Prettify the result
+    - Scaling
+    - Concerns:
+      - History page
+      - Settings page, how to implement?
+        - Figure out how to send info to server, backend will figure out everything else
+  - Cassie:
+    - Finishing up cleaning up repo
+    - Getting a more appropriate sized EC2 to cost less
+  - Jacob:
+    - Work on flask server that receives setting input
+    - Tweaking server_main to ensure better uptime
+- Meeting Adjured at 7:51 pm
