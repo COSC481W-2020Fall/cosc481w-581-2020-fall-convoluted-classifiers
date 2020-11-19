@@ -42,4 +42,15 @@
         android:textSize="30sp"
         android:textColor="#000000"
         android:visibility="invisible" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/photoButton"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:indeterminateDrawable="@drawable/progressbar"
+        android:indeterminate="true"
+        android:visibility="invisible" />
 </RelativeLayout>

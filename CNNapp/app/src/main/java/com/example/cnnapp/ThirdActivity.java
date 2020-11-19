@@ -42,7 +42,7 @@ public class ThirdActivity extends AppCompatActivity
 
     public void onButtonClick(View v)
     {
-        //Moves to third activity
+        //Moves to second activity
         Intent intent = new Intent(ThirdActivity.this, SecondActivity.class);
         startActivity(intent);
         //setContentView(R.layout.activity_third);

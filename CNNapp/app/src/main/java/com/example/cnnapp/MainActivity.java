@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     TextView resultTextView;
     String baseUrl;
     Bitmap myBitmap;
+    ProgressBar progressBar;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity
 
         resultTextView = (TextView) findViewById(R.id.resultTextDisplay);
         myImage = (ImageView) findViewById(R.id.pictureDisplay);
-
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     /* For Settings Icon */
@@ -103,6 +105,9 @@ public class MainActivity extends AppCompatActivity
                 baseUrl += cursor.getString(idx);*/
 
                 Toast.makeText(this, "Image Taken", Toast.LENGTH_LONG).show();
+
+                //Display progress bar
+                progressBar.setVisibility(View.VISIBLE);
 
                 //REST API INSTALL CODE
                 try {
@@ -214,6 +219,9 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+
+            //Hide progress bar
+            progressBar.setVisibility(View.INVISIBLE);
 
             //Display results
             resultTextView.setVisibility(View.VISIBLE);
