@@ -23,13 +23,13 @@ def main():
     OUTPUT_DIR     = join(HOME, "output")
     COMPLETE_DIR   = join(HOME, "complete")
     SECONDS_IN_DAY = 86400
-    debug = False
+    debug = True
 
-    model = predict.make_model(join(HOME, "models", "model_4"))
+    model = predict.make_model(join(HOME, "models", "nasnetlarge_0"))
     labels = predict.load_labels(join(THIS_DIR, "labels.txt"))
 
     while (True):
-        sleep(.05)
+        sleep(1)
         dir_contents = listdir(SCAN_PATH)
         try:
             first = dir_contents[0]
@@ -40,7 +40,9 @@ def main():
             with open(join(OUTPUT_DIR, first.split(".")[0]+".txt"), "w+") as file:
                 file.write(str(prediction))
             move(image, moved_img)
-        except Exception as e:
+        except IndexError as e:
+            pass
+        except IndexError as e:
             if debug: print(e)
 
 
