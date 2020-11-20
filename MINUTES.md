@@ -11,6 +11,7 @@
 - [11-02-2020](#11-02-2020)
 - [11-09-2020](#11-09-2020)
 - [11-16-2020](#11-16-2020)
+- [11-20-2020](#11-20-2020)
 
 # 09-08-2020
 - Discuss tentative items and make them actual
@@ -210,3 +211,17 @@
     - Work on flask server that receives setting input
     - Tweaking server_main to ensure better uptime
 - Meeting Adjured at 7:51 pm
+
+# 11-20-2020
+- Meeting called to order at 11:02 am
+- Look at contract and submit
+- Additional tasks:
+  - Jacob:
+    - Figure out url '?add_db=True', etc. syntax
+  - Yao:
+    - More training!
+  - Cassie:
+    - Additional server maintenance to decrease cost
+  - Baylie and Karen:
+    - Gallery access for uploading photo
+- Meeting adjured at 11:27 am
