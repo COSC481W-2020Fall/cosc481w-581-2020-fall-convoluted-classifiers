@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity
         resultTextView = (TextView) findViewById(R.id.resultTextDisplay);
         myImage = (ImageView) findViewById(R.id.pictureDisplay);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        //Set placeholder image
+        myImage.setImageResource(R.drawable.dog_img_placeholder);
     }
 
     /* For Settings Icon */
