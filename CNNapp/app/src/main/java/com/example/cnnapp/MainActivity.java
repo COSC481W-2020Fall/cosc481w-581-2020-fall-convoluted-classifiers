@@ -8,6 +8,8 @@ import androidx.core.content.FileProvider;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -45,7 +47,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         //REST API INSTALL CODE
-        baseUrl = "http://3.82.138.53:4201/image/";
+        baseUrl = "http://54.196.90.20:4201/image/";
+                //"http://3.82.138.53:4201/image/";
         //baseUrl = "http://3.82.138.53:4201/image/?file=@";
         //http://3.88.49.82:4201/breed/[IMAGE_NAME]
         //http://IP:PORT/image?file=FILENAME
@@ -97,7 +100,8 @@ public class MainActivity extends AppCompatActivity
             {
                 //Displays image taken
                 myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                myImage.setImageBitmap(myBitmap);
+                displayImage(myBitmap);
+                //myImage.setImageBitmap(myBitmap);
 
                 //Stores the image under the gallery
                 MediaStore.Images.Media.insertImage(getContentResolver(), myBitmap, new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()), null);
@@ -184,6 +188,49 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+    /* To fix image rotation issue */
+    public void displayImage(Bitmap myBitmap)
+    {
+        int orientation = 0;
+        Bitmap rotatedBitmap = null;
+
+        try {
+            ExifInterface ei = new ExifInterface(mCurrentPhotoPath);
+            orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_UNDEFINED);
+        }
+        catch (Exception e) { }
+
+        switch (orientation)
+        {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                rotatedBitmap = rotateImage(myBitmap, 90);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                rotatedBitmap = rotateImage(myBitmap, 180);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                rotatedBitmap = rotateImage(myBitmap, 270);
+                break;
+
+            case ExifInterface.ORIENTATION_NORMAL:
+            default:
+                rotatedBitmap = myBitmap;
+
+        }
+        myImage.setImageBitmap(rotatedBitmap);
+    }
+
+    public static Bitmap rotateImage(Bitmap source, float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
+    }
 
     //REST API INSTALL CODE
     /**
