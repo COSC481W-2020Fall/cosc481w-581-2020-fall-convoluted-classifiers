@@ -100,16 +100,11 @@ public class MainActivity extends AppCompatActivity
             {
                 //Displays image taken
                 myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                displayImage(myBitmap);
+                myBitmap = displayImage(myBitmap);
                 //myImage.setImageBitmap(myBitmap);
 
                 //Stores the image under the gallery
                 MediaStore.Images.Media.insertImage(getContentResolver(), myBitmap, new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()), null);
-
-/*                Cursor cursor = getContentResolver().query(Uri.parse(path), null, null, null, null);
-                cursor.moveToFirst();
-                int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-                baseUrl += cursor.getString(idx);*/
 
                 Toast.makeText(this, "Image Taken", Toast.LENGTH_LONG).show();
 
@@ -126,8 +121,11 @@ public class MainActivity extends AppCompatActivity
                 } catch (Exception ex) {
                 }
             }
-            }
         }
+
+
+
+    }
 
 
 
@@ -190,7 +188,7 @@ public class MainActivity extends AppCompatActivity
 
 
     /* To fix image rotation issue */
-    public void displayImage(Bitmap myBitmap)
+    public Bitmap displayImage(Bitmap myBitmap)
     {
         int orientation = 0;
         Bitmap rotatedBitmap = null;
@@ -222,6 +220,7 @@ public class MainActivity extends AppCompatActivity
 
         }
         myImage.setImageBitmap(rotatedBitmap);
+        return rotatedBitmap;
     }
 
     public static Bitmap rotateImage(Bitmap source, float angle)
