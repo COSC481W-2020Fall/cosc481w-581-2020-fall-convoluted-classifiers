@@ -275,6 +275,41 @@ public class MainActivity extends AppCompatActivity
             //Display results
             resultTextView.setVisibility(View.VISIBLE);
             resultTextView.setText(apiAuthenticationClient.getLastResponse());
+
+
+/*            //String response = apiAuthenticationClient.getLastResponse();
+            String response = "{\"result\":\"{'breed':'toy_poodle','confidence':98.9319984654}\"}";
+            String parseResponse = response.replaceAll("[_,}:{\"\']", " ");
+
+            StringTokenizer st = new StringTokenizer(parseResponse);
+            while (st.hasMoreTokens()) {
+                strip = st.nextToken();
+                printResponse = st.nextToken() + ": " + st.nextToken();
+                //printResponse = st.nextToken() + ": " + st.nextToken() + System.lineSeparator() + st.nextToken() + ": " + String.format("%.2f",st.nextToken());
+            }
+
+            resultTextView.setText(printResponse);
+
+
+            JSONObject json = null;
+            JSONObject jsonResult = null;
+            try {
+                //json = new JSONObject("{\"result\":\"{'breed':'toy_poodle','confidence':98.9319984654}\"}");
+                json = new JSONObject(apiAuthenticationClient.getLastResponse());
+
+                jsonResult = json.getJSONObject("result");
+                String breed =jsonResult.getString("breed"); //<< get value here
+                String confidence =jsonResult.getString("confidence"); //<< get value here
+
+                resultTextView.setVisibility(View.VISIBLE);
+
+                resultTextView.setText("Breed: "+ breed + System.lineSeparator() + "Confidence: "+ confidence);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+*/
+
         }
     }
 }

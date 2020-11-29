@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SecondActivity">
@@ -11,70 +11,110 @@
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
         android:layout_marginTop="25dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="30sp" />
+        android:text="Settings"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Text for permission -->
     <TextView
         android:id="@+id/permissionText"
-        android:layout_below="@+id/titleText"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:textSize="20sp"
+        android:layout_width="244dp"
+        android:layout_height="76dp"
         android:text="Allow images taken to be apart of the database, to improve future accuracy"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp" />
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
     <!-- Permission switch -->
     <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchCompat4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleText"
-        android:layout_toRightOf="@+id/permissionText"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="30dp"
-        android:layout_toEndOf="@+id/permissionText" />
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintLeft_toRightOf="@+id/permissionText"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
     <!-- Text for Second Permission-->
     <TextView
         android:id="@+id/permissionText2"
-        android:layout_below="@+id/permissionText"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:textSize="20sp"
+        android:layout_width="254dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="8dp"
         android:text="Did a recent prediction have an incorrect prediction?"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp" />
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <!-- Button for Second Permission-->
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/permissionText"
-        android:layout_toRightOf="@+id/permissionText2"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="20dp"
-        android:layout_toEndOf="@+id/permissionText2"
+        android:id="@+id/button4"
+        android:layout_width="78dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
         android:padding="10dp"
+        android:text="YES"
         android:textSize="20sp"
-        android:text="YES" />
+        app:layout_constraintLeft_toRightOf="@+id/permissionText2"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <!-- Button to move to Third Activity -->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/permissionText2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
         android:background="#999999"
         android:onClick="onButtonClick"
         android:padding="10dp"
+        android:text="View History"
         android:textSize="20sp"
-        android:text="View History" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
-</RelativeLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.11764706" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="610dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="609dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="275dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

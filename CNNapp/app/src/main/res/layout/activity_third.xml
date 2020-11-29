@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ThirdActivity">
@@ -11,23 +11,78 @@
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="History"
         android:layout_marginTop="25dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="30sp" />
+        android:layout_marginBottom="16dp"
+        android:text="History"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Button to move to Second Activity -->
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="108dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:srcCompat="@drawable/dog_img_placeholder" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="108dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:srcCompat="@drawable/dog_img_placeholder" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
         android:background="#999999"
         android:onClick="onButtonClick"
         android:padding="10dp"
+        android:text="Return to Settings"
         android:textSize="20sp"
-        android:text="Return to Settings" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
-</RelativeLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="77dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="610dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="142dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="201dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
