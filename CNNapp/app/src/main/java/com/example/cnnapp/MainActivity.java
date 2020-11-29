@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity
 {
     static final int REQUEST_TAKE_PHOTO = 1;
+    static final int GALLERY_REQUEST = 9;
     String imageFileName;
     String mCurrentPhotoPath;
     ImageView myImage;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     String baseUrl;
     Bitmap myBitmap;
     ProgressBar progressBar;
+    File imgFile;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -91,10 +94,10 @@ public class MainActivity extends AppCompatActivity
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //Displays image that was taken to user
+        //Displays image that was taken to user from Camera
         if (requestCode == 1)
         {
-            File imgFile = new File(mCurrentPhotoPath);
+            imgFile = new File(mCurrentPhotoPath);
             //Checks if File exists
             if (imgFile.exists())
             {
@@ -123,17 +126,36 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
+        //Displays image chosen from Gallery
+        if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null)
+        {
+            //Get selected image uri
+            Uri selectedImage = data.getData();
 
-
+            //Display image chosen
+            myImage.setImageURI(selectedImage);
+        }
     }
-
-
-
 
     public void onButtonClick(View v)
     {
         //Calls method to open the camera
         dispatchTakePictureIntent();
+    }
+
+    public void onGalleryClick(View v)
+    {
+        //Calls method to get image from Gallery
+        getImageFromGallery();
+    }
+
+    public void getImageFromGallery()
+    {
+        //Opens gallery and returns image selected
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, GALLERY_REQUEST);
     }
 
     private File createImageFile() throws IOException
