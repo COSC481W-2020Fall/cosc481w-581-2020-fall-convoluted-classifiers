@@ -23,3 +23,7 @@ Result:
 ### Problems
  - [x] the accuracy does not increase over 0.8
  - [x] need help on build a model for better performance
+
+
+### Nov 30th (update)
+ - the model trained with the pre-trained model NasNetLarge has 94% accuracy which is good enough so far.
