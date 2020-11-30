@@ -1,3 +1,0 @@
-# AWS Server
-## October 15
-At 7:00 pm on Oct 15, Jacob, Karen, Baylie, and Junyao began to work on development for the AWS backend. After 40 minutes of achieving nothing, we decided to throw in the towel and try again at the next meeting on Oct 19 with assistance from our professor. We kept getting issues about how we did not have permission to create IAM privacy users, create SQS queues, to add users to S3 buckets, and to create lambda functions; all four of the things we needed to get this backend to work.
