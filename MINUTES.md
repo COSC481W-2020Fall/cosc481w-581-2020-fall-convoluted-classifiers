@@ -225,3 +225,10 @@
   - Baylie and Karen:
     - Gallery access for uploading photo
 - Meeting adjured at 11:27 am
+
+# 11-30-2020
+- Meeting began at 7:33pm
+- Review of server 
+- Jacob demonstrated how to check to see if the server is running
+- Cassie is finishing cleaning up and will assist the front end team on the app
+- Meeting ended at 7:45pm   
