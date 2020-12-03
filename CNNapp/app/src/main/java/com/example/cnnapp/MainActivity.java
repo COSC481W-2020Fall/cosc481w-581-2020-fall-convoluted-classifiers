@@ -109,32 +109,48 @@ public class MainActivity extends AppCompatActivity
                 //Stores the image under the gallery
                 MediaStore.Images.Media.insertImage(getContentResolver(), myBitmap, new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()), null);
 
-                Toast.makeText(this, "Image Taken", Toast.LENGTH_LONG).show();
-
-                //Display progress bar
-                progressBar.setVisibility(View.VISIBLE);
-
-                //REST API INSTALL CODE
-                try {
-                    ApiAuthenticationClient apiAuthenticationClient =
-                            new ApiAuthenticationClient(baseUrl, myBitmap, imgFile);
-
-                    AsyncTask<Void, Void, String> execute = new ExecuteNetworkOperation(apiAuthenticationClient);
-                    execute.execute();
-                } catch (Exception ex) {
-                }
+                //Toast.makeText(this, "Image Taken", Toast.LENGTH_LONG).show();
             }
         }
-
         //Displays image chosen from Gallery
-        if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null)
+        else if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null)
         {
             //Get selected image uri
             Uri selectedImage = data.getData();
 
             //Display image chosen
             myImage.setImageURI(selectedImage);
+
+            //Get image bitmap
+            try
+            {
+                myBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                String path = selectedImage.getPath();
+                imgFile = new File(selectedImage.getPath());//create path from uri
+            } catch (Exception e) { Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
         }
+
+        //Display progress bar
+        progressBar.setVisibility(View.VISIBLE);
+
+        //REST API INSTALL CODE
+        try {
+            ApiAuthenticationClient apiAuthenticationClient =
+                    new ApiAuthenticationClient(baseUrl, myBitmap, imgFile);
+
+            AsyncTask<Void, Void, String> execute = new ExecuteNetworkOperation(apiAuthenticationClient);
+            execute.execute();
+        } catch (Exception ex) {
+        }
+
+/*        //Send bitmap to fourth activity - correction activity
+        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+        myBitmap.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+        byte[] byteArray = bStream.toByteArray();
+
+        Intent anotherIntent = new Intent(MainActivity.this, FourthActivity.class);
+        anotherIntent.putExtra("dogImage", byteArray);*/
     }
 
     public void onButtonClick(View v)
