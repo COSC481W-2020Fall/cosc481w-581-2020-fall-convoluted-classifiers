@@ -19,29 +19,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Text for permission -->
-    <TextView
-        android:id="@+id/permissionText"
-        android:layout_width="244dp"
-        android:layout_height="76dp"
-        android:text="Allow images taken to be apart of the database, to improve future accuracy"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/guideline7" />
-
-    <!-- Permission switch -->
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switchCompat4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintLeft_toRightOf="@+id/permissionText"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="@+id/guideline7" />
-
     <!-- Text for Second Permission-->
     <TextView
         android:id="@+id/permissionText2"
@@ -50,8 +27,9 @@
         android:layout_marginTop="8dp"
         android:text="Did a recent prediction have an incorrect prediction?"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        app:layout_constraintTop_toTopOf="@+id/guideline7"/>
 
     <!-- Button for Second Permission-->
     <Button
@@ -62,9 +40,10 @@
         android:padding="10dp"
         android:text="YES"
         android:textSize="20sp"
-        app:layout_constraintLeft_toRightOf="@+id/permissionText2"
+        android:onClick="onYesClick"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        app:layout_constraintTop_toTopOf="@+id/guideline7"/>
 
     <!-- Button to move to Third Activity -->
     <Button

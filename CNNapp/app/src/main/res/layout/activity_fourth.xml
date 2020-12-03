@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FourthActivity">
+
+    <TableRow
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Submit Correction"
+            android:textSize="30sp" />
+    </TableRow>
+
+    <TableRow
+        android:gravity="center">
+        <!-- Display for Image -->
+        <ImageView
+            android:id="@+id/pictureDisplay"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"/>
+    </TableRow>
+
+    <TableRow>
+        <TableRow
+            android:gravity="center">
+        <!-- Text box for Correct Dog Breed -->
+        <EditText
+            android:id="@+id/breedInput"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:background="#999999"
+            android:layout_marginTop="20dp"
+            android:hint="Dog Breed" />
+        </TableRow>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="20dp">
+        <TableRow
+            android:gravity="center">
+            <!-- Submit Button -->
+            <Button
+                android:id="@+id/submitButton"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="#999999"
+                android:onClick="onSubmitClick"
+                android:text="Submit"
+                android:textSize="20sp" />
+
+            <!-- Cancel Button -->
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="#999999"
+                android:onClick="onCancelClick"
+                android:textSize="20sp"
+                android:text="Cancel" />
+        </TableRow>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="20dp" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="*Note: submitting allows us to use the correct dog breed in future predictions"
+            android:textSize="20sp" />
+    </TableRow>
+
+</TableLayout>

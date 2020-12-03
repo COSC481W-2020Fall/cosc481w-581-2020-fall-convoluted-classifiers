@@ -45,6 +45,12 @@ public class SecondActivity extends AppCompatActivity
        //Moves to third activity
         Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
         startActivity(intent);
-        //setContentView(R.layout.activity_third);
+    }
+
+    public void onYesClick(View v)
+    {
+        //Moves to fourth activity
+        Intent intent = new Intent(SecondActivity.this, FourthActivity.class);
+        startActivity(intent);
     }
 }
