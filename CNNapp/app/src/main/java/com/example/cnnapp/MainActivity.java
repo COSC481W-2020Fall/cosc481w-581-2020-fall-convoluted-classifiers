@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.media.ExifInterface;
+import androidx.exifinterface.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onActivityResult(requestCode, resultCode, data);
 
+        resultTextView.setText("");
         //Displays image that was taken to user from Camera
         if (requestCode == 1)
         {
@@ -120,14 +121,21 @@ public class MainActivity extends AppCompatActivity
         //Displays image chosen from Gallery
         else if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null)
         {
-           //Get selected image uri
-            selectedImage = data.getData();
+            try
+            {
+                //Get selected image uri
+                selectedImage = data.getData();
 
-            //Display image chosen
-            myImage.setImageURI(selectedImage);
+                //Display image chosen
+                myImage.setImageURI(selectedImage);
 
-            //Get image filepath
-            imgFile = new File(selectedImage.getPath());
+                //Convert uri to bitmap
+                myBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+
+                //Get image filepath
+                imgFile = new File(selectedImage.getPath());
+            }
+            catch(Exception e) {}
         }
 
         //Display progress bar

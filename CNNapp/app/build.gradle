@@ -44,6 +44,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.exifinterface:exifinterface:1.1.0'
+
     // Required -- JUnit 4 framework
     testImplementation 'junit:junit:4.12'
 
