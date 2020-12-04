@@ -26,10 +26,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.*;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 
 public class MainActivity extends AppCompatActivity
@@ -45,6 +49,8 @@ public class MainActivity extends AppCompatActivity
     ProgressBar progressBar;
     File imgFile;
     Uri selectedImage;
+    StringBuilder output = new StringBuilder();
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -67,6 +73,7 @@ public class MainActivity extends AppCompatActivity
 
         //Set placeholder image
         myImage.setImageResource(R.drawable.dog_img_placeholder);
+
     }
 
     /* For Settings Icon */
@@ -298,10 +305,11 @@ public class MainActivity extends AppCompatActivity
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
             return null;
         }
 
-        /* Opens second activity to display results */
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
@@ -313,39 +321,32 @@ public class MainActivity extends AppCompatActivity
             resultTextView.setVisibility(View.VISIBLE);
             resultTextView.setText(apiAuthenticationClient.getLastResponse());
 
+            /*
 
-/*            //String response = apiAuthenticationClient.getLastResponse();
-            String response = "{\"result\":\"{'breed':'toy_poodle','confidence':98.9319984654}\"}";
-            String parseResponse = response.replaceAll("[_,}:{\"\']", " ");
+            String jsonResult = (apiAuthenticationClient.getLastResponse());
+            //json = new JSONObject("{\"result\":\"{'breed':'toy_poodle','confidence':98.9319984654}\"}");
 
-            StringTokenizer st = new StringTokenizer(parseResponse);
-            while (st.hasMoreTokens()) {
-                strip = st.nextToken();
-                printResponse = st.nextToken() + ": " + st.nextToken();
-                //printResponse = st.nextToken() + ": " + st.nextToken() + System.lineSeparator() + st.nextToken() + ": " + String.format("%.2f",st.nextToken());
-            }
-
-            resultTextView.setText(printResponse);
-
-
-            JSONObject json = null;
-            JSONObject jsonResult = null;
             try {
-                //json = new JSONObject("{\"result\":\"{'breed':'toy_poodle','confidence':98.9319984654}\"}");
-                json = new JSONObject(apiAuthenticationClient.getLastResponse());
+                JSONObject jsonObject = new JSONObject(jsonResult);
+                JSONObject resultObject = jsonObject.getJSONObject("result");
 
-                jsonResult = json.getJSONObject("result");
-                String breed =jsonResult.getString("breed"); //<< get value here
-                String confidence =jsonResult.getString("confidence"); //<< get value here
+                //String string = jsonObject.getString("result").replaceAll("[,}:{_\"\']", " ");
 
-                resultTextView.setVisibility(View.VISIBLE);
+                String breed = resultObject.getString("label");
+                String confidence = resultObject.getString("confidence");
 
-                resultTextView.setText("Breed: "+ breed + System.lineSeparator() + "Confidence: "+ confidence);
+                output.append(String.format("%s \n %s ", breed, confidence));
+
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-*/
+            resultTextView.setVisibility(View.VISIBLE);
+            resultTextView.setText(output.toString());
+
+            */
+
 
         }
     }

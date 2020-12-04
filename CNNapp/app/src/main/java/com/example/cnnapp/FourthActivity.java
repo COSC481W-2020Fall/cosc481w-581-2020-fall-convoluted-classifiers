@@ -64,6 +64,7 @@ public class FourthActivity extends AppCompatActivity
     /* For Home Icon */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
+
     {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.setting_menu, menu);

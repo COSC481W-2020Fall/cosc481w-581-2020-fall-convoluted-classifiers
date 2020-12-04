@@ -25,11 +25,11 @@
         android:layout_width="254dp"
         android:layout_height="75dp"
         android:layout_marginTop="8dp"
-        android:text="Did a recent prediction have an incorrect prediction?"
+        android:text="Did a recent prediction have an incorrect result?"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/guideline7"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
     <!-- Button for Second Permission-->
     <Button
