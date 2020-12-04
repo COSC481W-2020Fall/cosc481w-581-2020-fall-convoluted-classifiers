@@ -28,7 +28,7 @@
                 android:layout_width="300dp"
                 android:layout_height="400dp"
                 android:layout_marginTop="20dp"
-                android:scaleType="fitXY"/>
+                android:scaleType="centerInside"/>
         </TableRow>
     </TableRow>
 
@@ -36,13 +36,14 @@
         <TableRow
             android:gravity="center">
         <!-- Text box for Correct Dog Breed -->
-        <EditText
-            android:id="@+id/breedInput"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:background="#999999"
-            android:layout_marginTop="20dp"
-            android:hint="Dog Breed" />
+            <EditText
+                android:id="@+id/breedInput"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:background="#999999"
+                android:hint="        Enter Dog Breed"
+                android:selectAllOnFocus="false" />
         </TableRow>
     </TableRow>
 
