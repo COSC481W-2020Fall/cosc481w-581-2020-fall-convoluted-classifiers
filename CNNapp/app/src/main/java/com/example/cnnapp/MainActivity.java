@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity
     Bitmap myBitmap;
     ProgressBar progressBar;
     File imgFile;
+    Uri selectedImage;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -85,6 +86,9 @@ public class MainActivity extends AppCompatActivity
     {
         //Moves to second activity (settings)
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        if(selectedImage != null) {
+            intent.putExtra("imageUri", selectedImage.toString());
+        }
         startActivity(intent);
         return true;
     }
@@ -98,6 +102,7 @@ public class MainActivity extends AppCompatActivity
         if (requestCode == 1)
         {
             imgFile = new File(mCurrentPhotoPath);
+            selectedImage = Uri.parse(mCurrentPhotoPath);
             //Checks if File exists
             if (imgFile.exists())
             {
@@ -115,20 +120,14 @@ public class MainActivity extends AppCompatActivity
         //Displays image chosen from Gallery
         else if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null)
         {
-            //Get selected image uri
-            Uri selectedImage = data.getData();
+           //Get selected image uri
+            selectedImage = data.getData();
 
             //Display image chosen
             myImage.setImageURI(selectedImage);
 
-            //Get image bitmap
-            try
-            {
-                myBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
-                String path = selectedImage.getPath();
-                imgFile = new File(selectedImage.getPath());//create path from uri
-            } catch (Exception e) { Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            //Get image filepath
+            imgFile = new File(selectedImage.getPath());
         }
 
         //Display progress bar
@@ -137,20 +136,12 @@ public class MainActivity extends AppCompatActivity
         //REST API INSTALL CODE
         try {
             ApiAuthenticationClient apiAuthenticationClient =
-                    new ApiAuthenticationClient(baseUrl, myBitmap, imgFile);
+                    new ApiAuthenticationClient(baseUrl, myBitmap, imgFile, "");
 
             AsyncTask<Void, Void, String> execute = new ExecuteNetworkOperation(apiAuthenticationClient);
             execute.execute();
         } catch (Exception ex) {
         }
-
-/*        //Send bitmap to fourth activity - correction activity
-        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-        myBitmap.compress(Bitmap.CompressFormat.PNG, 100, bStream);
-        byte[] byteArray = bStream.toByteArray();
-
-        Intent anotherIntent = new Intent(MainActivity.this, FourthActivity.class);
-        anotherIntent.putExtra("dogImage", byteArray);*/
     }
 
     public void onButtonClick(View v)

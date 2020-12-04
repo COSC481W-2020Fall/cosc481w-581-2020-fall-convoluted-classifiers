@@ -51,6 +51,15 @@ public class SecondActivity extends AppCompatActivity
     {
         //Moves to fourth activity
         Intent intent = new Intent(SecondActivity.this, FourthActivity.class);
+
+        Bundle extras = getIntent().getExtras();
+        try {
+            if (extras.getString("imageUri") != null) {
+                String imgURI = extras.getString("imageUri");
+                intent.putExtra("imageUri", imgURI);
+            }
+        }
+        catch (Exception e) { }
         startActivity(intent);
     }
 }

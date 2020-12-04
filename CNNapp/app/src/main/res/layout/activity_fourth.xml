@@ -19,15 +19,17 @@
             android:textSize="30sp" />
     </TableRow>
 
-    <TableRow
-        android:gravity="center">
-        <!-- Display for Image -->
-        <ImageView
-            android:id="@+id/pictureDisplay"
-            android:layout_width="300dp"
-            android:layout_height="400dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="fitXY"/>
+    <TableRow>
+        <TableRow
+            android:gravity="center">
+            <!-- Display for Image -->
+            <ImageView
+                android:id="@+id/pictureDisplay"
+                android:layout_width="300dp"
+                android:layout_height="400dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY"/>
+        </TableRow>
     </TableRow>
 
     <TableRow>

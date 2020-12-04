@@ -40,15 +40,17 @@ public class ApiAuthenticationClient {
     private String payload;
     private HashMap<String, String> parameters;
     private Map<String, List<String>> headerFields;
+    private String dogBreed;
 
     /**
      *  @param baseUrl String
      *
      */
-    public ApiAuthenticationClient(String baseUrl, Bitmap myImage, File myImageFile) {
+    public ApiAuthenticationClient(String baseUrl, Bitmap myImage, File myImageFile, String dogBreed) {
         setBaseUrl(baseUrl);
         this.myImage = myImage;
         this.imageFile = myImageFile;
+        this.dogBreed = dogBreed;
         this.urlResource = "";
         this.urlPath = "";
         this.httpMethod = "POST";
@@ -233,14 +235,6 @@ public class ApiAuthenticationClient {
         StringBuilder outputStringBuilder = new StringBuilder();
 
         try {
-            /*
-
-            OutputStream pngFileOutputStream = new FileOutputStream(pngFile);
-            myImage.compress(Bitmap.CompressFormat.PNG, 100, pngFileOutputStream);
-            pngFileOutputStream.flush();
-            pngFileOutputStream.close();
-            */
-            //imageName = "dogImage.png";
             File pngFile = new File(imageFile.getParent(), String.valueOf(System.nanoTime()) + ".png");
 
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -253,27 +247,11 @@ public class ApiAuthenticationClient {
                 urlString.append("/" + urlPath);
             }
 
-            /*
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            myImage.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-            byte [] byteArray = byteArrayOutputStream.toByteArray();
-            String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-            setParameter("file", encoded);
-            setParameters(parameters);
-
-            if (parameters.size() > 0 && httpMethod.equals("POST")) {
-                payload = getPayloadAsString();
-                urlString.append("?" + payload);
-            }
-
-            */
-
             URL url = new URL(urlString.toString());
 
             /* Connection from the App to AWS */
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod(httpMethod);
-            //connection.setRequestProperty("Authorization", "Basic " + myImage);
             connection.setRequestProperty("Accept", "application/json");
 
 
@@ -294,9 +272,6 @@ public class ApiAuthenticationClient {
                 connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary); //HTTP request header
 
                 try {
-                    //OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
-                    //writer.write(payload);
-
                     OutputStream outputStream = connection.getOutputStream();
                     DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
                     //denote the beginning of a data part
@@ -307,6 +282,13 @@ public class ApiAuthenticationClient {
                     dataOutputStream.write(byteArray);
                     dataOutputStream.writeBytes(crlf);
                     dataOutputStream.writeBytes(twoHyphens + boundary + twoHyphens + crlf);
+
+                    if(!dogBreed.equals(""))
+                    {
+                        dataOutputStream.writeBytes(dogBreed);
+                    }
+
+
                     dataOutputStream.flush();
                     dataOutputStream.close();
 
