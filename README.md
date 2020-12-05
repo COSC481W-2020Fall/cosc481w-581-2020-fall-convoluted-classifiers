@@ -1,7 +1,69 @@
 # Dog Breed Detector v0.1.0
 This is an open source dog breed detector.
 
-# Install
+# CNN App Quick Access: 
+
+On your phone, please click the following link: 
+
+** Note: You will have to enable the ability install APK's from "unknown sources" (Typically found in Settings > Applications > "Unknown Sources" checkbox)
+
+# How to install Android Studio:
+
+Download Android Studio
+https://developer.android.com/studio
+
+Run the Android Studio Setup:
+
+Under “Choose Components”, leave as default and continue
+Choose the install location on your computer and continue
+Under “Choose Start Menu Folder”, leave as default and continue
+Wait for installation to complete and click Next
+Launch Android Studio
+When prompted to import Android Studio Settings select “Do not import settings”
+
+Now we will go through the Setup Wizard:
+
+Select “Standard” for the Install Type and Click Next
+Select the “UI Theme” with your preference and Click Next
+Click Finish
+
+
+How to load the CNN Project from Github:
+
+Open Android Studio
+Choose “Project From Version Control”
+Enter the Repository URL
+https://github.com/COSC481W-2020Fall/cosc481w-581-2020-fall-convoluted-classifiers.git
+Click Clone
+It will ask if you want to open the project, Click Yes
+It will take a few minutes for the Gradle to sync
+
+(not finished yet)
+
+
+# How to run app on your own device through Android Studio:
+
+Connect your device to your computer using a USB cable
+
+On your device:
+
+On your device open up “Settings”
+In Settings go to “About Phone”
+Certain versions will have it under System > About Phone
+Scroll to the bottom and tap on “Build Number” 7 times
+Return to Settings and go System > Advanced
+Open “Developer Options”
+Turn on “USB Debugging”
+It will ask to “Allow USB Debugging”, Click Allow
+
+In Android Studio:
+
+In the toolbar, select the device that you want your app to run on from the “Target Device” drop-down menu
+Click Run to the right of the “Target Device” menu
+   
+
+
+# Install Prototype
 1. [Install python3.7 from python.org](https://www.python.org/downloads/)
 2. Clone/download the repository
    - Download zip
@@ -12,7 +74,7 @@ This is an open source dog breed detector.
     2. Mac/Linux - `venv/bin/python -m pip install -r requirements.txt`
     3. Windows   - `venv\Scripts\python.exe -m pip install -r requirements.txt`
 
-# Run
+# Run Prototype
 1. Run command `venv\Scripts\python.exe main.py --test_location="[LOCATION]"`
 
 # Prototype Description
