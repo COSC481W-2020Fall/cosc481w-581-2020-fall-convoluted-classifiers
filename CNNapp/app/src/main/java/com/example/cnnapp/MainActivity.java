@@ -20,20 +20,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.*;
-
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.StringTokenizer;
 
 
 public class MainActivity extends AppCompatActivity
@@ -49,8 +45,6 @@ public class MainActivity extends AppCompatActivity
     ProgressBar progressBar;
     File imgFile;
     Uri selectedImage;
-    StringBuilder output = new StringBuilder();
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -121,8 +115,6 @@ public class MainActivity extends AppCompatActivity
 
                 //Stores the image under the gallery
                 MediaStore.Images.Media.insertImage(getContentResolver(), myBitmap, new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()), null);
-
-                //Toast.makeText(this, "Image Taken", Toast.LENGTH_LONG).show();
             }
         }
         //Displays image chosen from Gallery
@@ -314,40 +306,33 @@ public class MainActivity extends AppCompatActivity
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
+            String jsonResult = "";
+
             //Hide progress bar
             progressBar.setVisibility(View.INVISIBLE);
 
             //Display results
             resultTextView.setVisibility(View.VISIBLE);
-            resultTextView.setText(apiAuthenticationClient.getLastResponse());
-
-            /*
-
-            String jsonResult = (apiAuthenticationClient.getLastResponse());
             //json = new JSONObject("{\"result\":\"{'breed':'toy_poodle','confidence':98.9319984654}\"}");
+          try
+          {
+              jsonResult = (apiAuthenticationClient.getLastResponse());
+              JSONObject jsonObject = new JSONObject(jsonResult);
+              JSONObject resultObject = jsonObject.getJSONObject("result");
 
-            try {
-                JSONObject jsonObject = new JSONObject(jsonResult);
-                JSONObject resultObject = jsonObject.getJSONObject("result");
+              //String string = jsonObject.getString("result").replaceAll("[,}:{_\"\']", " ");
 
-                //String string = jsonObject.getString("result").replaceAll("[,}:{_\"\']", " ");
+              String breed = resultObject.getString("label");
+              String confidence = resultObject.getString("confidence");
+              //output.append(String.format("%s \n %s ", breed, confidence));
 
-                String breed = resultObject.getString("label");
-                String confidence = resultObject.getString("confidence");
-
-                output.append(String.format("%s \n %s ", breed, confidence));
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
+              String outputString = "Breed: " + breed + "\nConfidence: " + confidence.substring(0, 4) + "%";
+              resultTextView.setText(outputString);
+          }
+          catch (Exception e)
+          {
+                resultTextView.setText("Unable to display results");
             }
-
-            resultTextView.setVisibility(View.VISIBLE);
-            resultTextView.setText(output.toString());
-
-            */
-
-
         }
     }
 }
