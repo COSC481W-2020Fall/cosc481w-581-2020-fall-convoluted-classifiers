@@ -25,8 +25,8 @@ Run the Android Studio Setup:
 
 Now we will go through the Setup Wizard:
 
-1. Select “Standard” for the Install Type and Click Next
-2. Select the “UI Theme” with your preference and Click Next
+1. Select “Standard” for the Install Type and click Next
+2. Select the “UI Theme” with your preference and click Next
 3. Click Finish
 
 
@@ -37,10 +37,12 @@ How to load the CNN Project from Github:
 3. Enter the Repository URL:
    - https://github.com/COSC481W-2020Fall/cosc481w-581-2020-fall-convoluted-classifiers.git
 4. Click Clone
-5. It will ask if you want to open the project, Click Yes
+5. Select "Create project from existing sources" and click Next
+6. Enter a project name or leave as default and click Next
+7. Click Finish
+5. It will ask if you want to open the project, click Yes
    - It will take a few minutes for the Gradle to sync
 
-(not finished yet)
 
 
 # How to run app on your own device through Android Studio:
