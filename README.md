@@ -16,52 +16,52 @@ https://developer.android.com/studio
 
 Run the Android Studio Setup:
 
-Under “Choose Components”, leave as default and continue
-Choose the install location on your computer and continue
-Under “Choose Start Menu Folder”, leave as default and continue
-Wait for installation to complete and click Next
-Launch Android Studio
-When prompted to import Android Studio Settings select “Do not import settings”
+1. Under “Choose Components”, leave as default and continue
+2. Choose the install location on your computer and continue
+3. Under “Choose Start Menu Folder”, leave as default and continue
+4. Wait for installation to complete and click Next
+5. Launch Android Studio
+   - When prompted to import Android Studio Settings select “Do not import settings”
 
 Now we will go through the Setup Wizard:
 
-Select “Standard” for the Install Type and Click Next
-Select the “UI Theme” with your preference and Click Next
-Click Finish
+1. Select “Standard” for the Install Type and Click Next
+2. Select the “UI Theme” with your preference and Click Next
+3. Click Finish
 
 
 How to load the CNN Project from Github:
 
-Open Android Studio
-Choose “Project From Version Control”
-Enter the Repository URL
-https://github.com/COSC481W-2020Fall/cosc481w-581-2020-fall-convoluted-classifiers.git
-Click Clone
-It will ask if you want to open the project, Click Yes
-It will take a few minutes for the Gradle to sync
+1. Open Android Studio
+2. Choose “Project From Version Control”
+3. Enter the Repository URL:
+   - https://github.com/COSC481W-2020Fall/cosc481w-581-2020-fall-convoluted-classifiers.git
+4. Click Clone
+5. It will ask if you want to open the project, Click Yes
+   - It will take a few minutes for the Gradle to sync
 
 (not finished yet)
 
 
 # How to run app on your own device through Android Studio:
 
-Connect your device to your computer using a USB cable
+1. Connect your device to your computer using a USB cable
 
 On your device:
 
-On your device open up “Settings”
-In Settings go to “About Phone”
-Certain versions will have it under System > About Phone
-Scroll to the bottom and tap on “Build Number” 7 times
-Return to Settings and go System > Advanced
-Open “Developer Options”
-Turn on “USB Debugging”
-It will ask to “Allow USB Debugging”, Click Allow
+2. On your device open up “Settings”
+3. In Settings go to “About Phone”
+   - Certain versions will have it under System > About Phone
+4. Scroll to the bottom and tap on “Build Number” 7 times
+5. Return to Settings and go System > Advanced
+6. Open “Developer Options”
+7. Turn on “USB Debugging”
+   - It will ask to “Allow USB Debugging”, Click Allow
 
 In Android Studio:
 
-In the toolbar, select the device that you want your app to run on from the “Target Device” drop-down menu
-Click Run to the right of the “Target Device” menu
+8. In the toolbar, select the device that you want your app to run on from the “Target Device” drop-down menu
+9. Click Run to the right of the “Target Device” menu
    
 
 
