@@ -5,7 +5,7 @@ This is an open source dog breed detector.
 
 On your Android Device, please click [here](https://github.com/COSC481W-2020Fall/cosc481w-581-2020-fall-convoluted-classifiers/blob/App-Installation-Documentation/App%20APK/app-debug.apk) to download the file: app-debug.apk
 
-Once the app-debug.apk file is downloaded you will be prompted to install and open the application.
+Once the app-debug.apk file is downloaded you will be prompted to open the file and install the application.
 
 ** Note: You will need to enable the ability to install APK's from "unknown sources" (Typically found in Settings > Applications > "Unknown Sources" checkbox) or you may be asked while downloading the application.
 
