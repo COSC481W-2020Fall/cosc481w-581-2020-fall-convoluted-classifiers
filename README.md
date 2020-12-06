@@ -1,7 +1,7 @@
 # Dog Breed Detector v0.1.0
 This is an open source dog breed detector.
 
-# CNN App Quick Access: 
+# Dog Breed Detector App Quick Access: 
 
 On your Android Device, please click [here](https://github.com/COSC481W-2020Fall/cosc481w-581-2020-fall-convoluted-classifiers/blob/App-Installation-Documentation/App%20APK/app-debug.apk) to download the file: app-debug.apk
 
