@@ -1,7 +1,73 @@
 # Dog Breed Detector v0.1.0
 This is an open source dog breed detector.
 
-# Install
+# Dog Breed Detector App Quick Access: 
+
+On your Android Device, please click [here](https://github.com/COSC481W-2020Fall/cosc481w-581-2020-fall-convoluted-classifiers/blob/App-Installation-Documentation/App%20APK/app-debug.apk) to download the file: app-debug.apk
+
+Once the app-debug.apk file is downloaded you will be prompted to open the file and install the application.
+
+** Note: You will need to enable the ability to install APK's from "unknown sources" (Typically found in Settings > Applications > "Unknown Sources" checkbox) or you may be asked while downloading the application.
+
+# How to install Android Studio:
+
+Download Android Studio
+https://developer.android.com/studio
+
+Run the Android Studio Setup:
+
+1. Under “Choose Components”, leave as default and continue
+2. Choose the install location on your computer and continue
+3. Under “Choose Start Menu Folder”, leave as default and continue
+4. Wait for installation to complete and click Next
+5. Launch Android Studio
+   - When prompted to import Android Studio Settings select “Do not import settings”
+
+Now we will go through the Setup Wizard:
+
+1. Select “Standard” for the Install Type and click Next
+2. Select the “UI Theme” with your preference and click Next
+3. Click Finish
+
+
+How to load the CNN Project from Github:
+
+1. Open Android Studio
+2. Choose “Project From Version Control”
+3. Enter the Repository URL:
+   - https://github.com/COSC481W-2020Fall/cosc481w-581-2020-fall-convoluted-classifiers.git
+4. Click Clone
+5. Select "Create project from existing sources" and click Next
+6. Enter a project name or leave as default and click Next
+7. Click Finish
+5. It will ask if you want to open the project, click Yes
+   - It will take a few minutes for the Gradle to sync
+
+
+
+# How to run app on your own device through Android Studio:
+
+1. Connect your device to your computer using a USB cable
+
+On your device:
+
+2. On your device open up “Settings”
+3. In Settings go to “About Phone”
+   - Certain versions will have it under System > About Phone
+4. Scroll to the bottom and tap on “Build Number” 7 times
+5. Return to Settings and go System > Advanced
+6. Open “Developer Options”
+7. Turn on “USB Debugging”
+   - It will ask to “Allow USB Debugging”, Click Allow
+
+In Android Studio:
+
+8. In the toolbar, select the device that you want your app to run on from the “Target Device” drop-down menu
+9. Click Run to the right of the “Target Device” menu
+   
+
+
+# Install Prototype
 1. [Install python3.7 from python.org](https://www.python.org/downloads/)
 2. Clone/download the repository
    - Download zip
@@ -12,7 +78,7 @@ This is an open source dog breed detector.
     2. Mac/Linux - `venv/bin/python -m pip install -r requirements.txt`
     3. Windows   - `venv\Scripts\python.exe -m pip install -r requirements.txt`
 
-# Run
+# Run Prototype
 1. Run command `venv\Scripts\python.exe main.py --test_location="[LOCATION]"`
 
 # Prototype Description
