@@ -326,7 +326,7 @@ public class MainActivity extends AppCompatActivity
               String confidence = resultObject.getString("confidence");
               //output.append(String.format("%s \n %s ", breed, confidence));
 
-              String outputString = "Breed: " + breed + "\nConfidence: " + confidence.substring(0, 4) + "%";
+              String outputString = "Breed: " + breed.replaceAll("_", " ") + "\nConfidence: " + confidence.substring(0, 4) + "%";
               resultTextView.setText(outputString);
           }
           catch (Exception e)
