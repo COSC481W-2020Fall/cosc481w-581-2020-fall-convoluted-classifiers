@@ -27,3 +27,7 @@ Result:
 
 ### Nov 30th (update)
  - the model trained with the pre-trained model NasNetLarge has 94% accuracy which is good enough so far.
+
+### Dec 7th (update)
+ - prediction of cross breed dog will be displayed when the top 2 or top 3 predictions have similar confidence of results.
+ - For higher confidence of cross breed dog prediction, we should retrain our model with more images and make more detailed features in each image be detected by the model.
