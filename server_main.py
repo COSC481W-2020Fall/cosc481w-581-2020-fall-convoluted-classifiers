@@ -4,6 +4,7 @@ from os.path import join, dirname, realpath
 from os import listdir, environ
 from shutil import move
 from time import time, sleep
+from json import dumps
 
 # slience debugging logs and warning messages or 'deprecated' warning
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
@@ -38,11 +39,11 @@ def main():
             moved_img = join(COMPLETE_DIR, first)
             prediction = predict.predict(image, labels, model)
             with open(join(OUTPUT_DIR, first.split(".")[0]+".txt"), "w+") as file:
-                file.write(str(prediction))
+                file.write(dumps(prediction))
             move(image, moved_img)
         except IndexError as e:
             pass
-        except IndexError as e:
+        except BaseException as e:
             if debug: print(e)
 
 
