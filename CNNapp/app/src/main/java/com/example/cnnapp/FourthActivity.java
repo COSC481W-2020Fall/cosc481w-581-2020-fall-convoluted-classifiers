@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -32,7 +34,7 @@ public class FourthActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         //REST API INSTALL CODE
-        baseUrl = "http://54.196.90.20:4201/image/";
+        baseUrl = "http://54.196.90.20:4201/correction/";
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fourth);
@@ -40,6 +42,10 @@ public class FourthActivity extends AppCompatActivity
         image = (ImageView)findViewById(R.id.pictureDisplay);
         userInput = (EditText) findViewById(R.id.breedInput);
         submitBtn = (Button) findViewById(R.id.submitButton);
+
+        //Enable submit button and text box
+        submitBtn.setEnabled(true);
+        userInput.setEnabled(true);
 
         //Display image
         try
@@ -54,7 +60,7 @@ public class FourthActivity extends AppCompatActivity
         }
         catch (Exception e)
         {
-            //If no image was taken or chosen from the gallery, prevent user from entering dog breed
+            //Prevent user from entering dog breed and submitting without a image chosen/taken
             userInput.setEnabled(false);
             //Disable submit button
             submitBtn.setEnabled(false);
@@ -64,7 +70,6 @@ public class FourthActivity extends AppCompatActivity
     /* For Home Icon */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
-
     {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.setting_menu, menu);
@@ -86,13 +91,20 @@ public class FourthActivity extends AppCompatActivity
     public void onSubmitClick(View v)
     {
         //Grab user input - dog breed
-        EditText input = (EditText) findViewById(R.id.breedInput);
-        String userInput = input.getText().toString();
+        userInput = (EditText) findViewById(R.id.breedInput);
+        String input = userInput.getText().toString();
+
+        //Get bitmap
+        try
+        {
+            myBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgURI);
+        }
+        catch(Exception e) { }
 
         //REST API INSTALL CODE
         try {
             ApiAuthenticationClient apiAuthenticationClient =
-                    new ApiAuthenticationClient(baseUrl, myBitmap, imgFile, userInput);
+                    new ApiAuthenticationClient(baseUrl, myBitmap, imgFile, input);
 
             AsyncTask<Void, Void, String> execute = new FourthActivity.ExecuteNetworkOperation(apiAuthenticationClient);
             execute.execute();
@@ -143,7 +155,12 @@ public class FourthActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            //Display results
+            Toast.makeText(FourthActivity.this, "Thank you, your response has been submitted!", Toast.LENGTH_LONG).show();
 
+            //Prevent user from submitting multiple times
+            submitBtn.setEnabled(false);
+            userInput.setEnabled(false);
             }
         }
     }
