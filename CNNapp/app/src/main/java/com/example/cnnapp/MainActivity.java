@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity
     ProgressBar progressBar;
     File imgFile;
     Uri selectedImage;
+    String breed = "";
+    String confidence = "";
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -89,6 +91,8 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
         if(selectedImage != null) {
             intent.putExtra("imageUri", selectedImage.toString());
+            intent.putExtra("breed", breed);
+            intent.putExtra("confidence", confidence);
         }
         startActivity(intent);
         return true;
@@ -322,8 +326,8 @@ public class MainActivity extends AppCompatActivity
 
               //String string = jsonObject.getString("result").replaceAll("[,}:{_\"\']", " ");
 
-              String breed = resultObject.getString("label");
-              String confidence = resultObject.getString("confidence");
+              breed = resultObject.getString("label");
+              confidence = resultObject.getString("confidence");
               //output.append(String.format("%s \n %s ", breed, confidence));
 
               String outputString = "Breed: " + breed.replaceAll("_", " ") + "\nConfidence: " + confidence.substring(0, 4) + "%";

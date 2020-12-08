@@ -44,6 +44,19 @@ public class SecondActivity extends AppCompatActivity
     {
        //Moves to third activity
         Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
+        Bundle extras = getIntent().getExtras();
+        try {
+            if (extras.getString("imageUri") != null) {
+                String imgURI = extras.getString("imageUri");
+                String breed = extras.getString("breed");
+                String confidence = extras.getString("confidence");
+
+                intent.putExtra("imageUri", imgURI);
+                intent.putExtra("breed", breed);
+                intent.putExtra("confidence", confidence);
+            }
+        }
+        catch (Exception e) { }
         startActivity(intent);
     }
 

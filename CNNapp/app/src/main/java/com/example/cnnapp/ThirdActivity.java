@@ -1,6 +1,7 @@
 package com.example.cnnapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +11,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+
 public class ThirdActivity extends AppCompatActivity
 {
     @Override
@@ -17,6 +20,20 @@ public class ThirdActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
+
+        //Display image
+        try
+        {
+            //Get file path
+            Bundle extras = getIntent().getExtras();
+            Uri imgURI = Uri.parse(extras.getString("imageUri"));
+            File imgFile = new File(imgURI.getPath());
+
+            String breed = extras.getString("breed");
+            String confidence = extras.getString("confidence");
+
+        }
+        catch (Exception e) {}
     }
 
     /* For Home Icon */
