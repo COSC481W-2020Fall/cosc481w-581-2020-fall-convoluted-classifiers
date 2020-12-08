@@ -156,7 +156,14 @@ public class FourthActivity extends AppCompatActivity
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             //Display results
-            Toast.makeText(FourthActivity.this, "Thank you, your response has been submitted!", Toast.LENGTH_LONG).show();
+            if(result.equals("Success!"))
+            {
+                Toast.makeText(FourthActivity.this, "Thank you, your response has been submitted!", Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                Toast.makeText(FourthActivity.this, "Unable to submit response", Toast.LENGTH_LONG).show();
+            }
 
             //Prevent user from submitting multiple times
             submitBtn.setEnabled(false);

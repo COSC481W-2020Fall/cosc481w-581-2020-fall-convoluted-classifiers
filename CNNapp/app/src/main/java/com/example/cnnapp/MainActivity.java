@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
     Uri selectedImage;
     String breed = "";
     String confidence = "";
+    DatabaseManager db;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity
 
         //Set placeholder image
         myImage.setImageResource(R.drawable.dog_img_placeholder);
+
+        db = new DatabaseManager(this);
 
     }
 
@@ -271,6 +274,17 @@ public class MainActivity extends AppCompatActivity
                 matrix, true);
     }
 
+    /* Insert image uri, breed and confidence in the database */
+    public void insert(String breed, String confidence)
+    {
+        //Convert uri to string
+        String strURI = selectedImage.toString();
+
+        History history = new History(strURI, breed, confidence);
+
+        db.insert(history);
+    }
+
     //REST API INSTALL CODE
     /**
      * This subclass handles the network operations in a new thread.
@@ -332,6 +346,9 @@ public class MainActivity extends AppCompatActivity
 
               String outputString = "Breed: " + breed.replaceAll("_", " ") + "\nConfidence: " + confidence.substring(0, 4) + "%";
               resultTextView.setText(outputString);
+
+              //Insert into database for history
+              insert(breed, confidence);
           }
           catch (Exception e)
           {

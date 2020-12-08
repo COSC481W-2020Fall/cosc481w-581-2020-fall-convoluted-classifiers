@@ -15,15 +15,13 @@
         android:layout_marginBottom="16dp"
         android:text="History"
         android:textSize="30sp"
-        android:layout_centerHorizontal= "true"
-        />
+        android:layout_centerHorizontal= "true" />
 
     <TableLayout
-
         android:id="@+id/main_table"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_below="@id/titleText"></TableLayout>
+        android:layout_below="@id/titleText" />
 
     <!-- Button to move to Settings -->
 

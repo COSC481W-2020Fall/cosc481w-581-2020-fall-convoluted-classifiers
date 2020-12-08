@@ -44,6 +44,9 @@ android {
 }
 
 dependencies {
+
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
     implementation 'androidx.exifinterface:exifinterface:1.1.0'
 
     // Required -- JUnit 4 framework

@@ -274,20 +274,19 @@ public class ApiAuthenticationClient {
                 try {
                     OutputStream outputStream = connection.getOutputStream();
                     DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-                    //denote the beginning of a data part
-                    dataOutputStream.writeBytes(twoHyphens + boundary + crlf);
+
+                    dataOutputStream.writeBytes(twoHyphens + boundary + crlf); //denote the beginning of a data part
                     dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"file\"; filename=\"" + pngFile.getName() + "\"" + crlf); //indicate the field name and the file name
-                    dataOutputStream.writeBytes("Content-Type: image/png" + crlf); //indicating file type
+                    dataOutputStream.writeBytes("Content-Type: multipart/form-data" + crlf); //indicating file type
                     dataOutputStream.writeBytes(crlf); //indicating the beginning of the file
                     dataOutputStream.write(byteArray);
-                    dataOutputStream.writeBytes(crlf);
-                    dataOutputStream.writeBytes(twoHyphens + boundary + twoHyphens + crlf);
+                    dataOutputStream.writeBytes(crlf); //indicating the end of the file
+                    dataOutputStream.writeBytes(twoHyphens + boundary + twoHyphens + crlf); //indicating the end of the data part
 
                     if(!dogBreed.equals(""))
                     {
                         dataOutputStream.writeBytes(dogBreed);
                     }
-
 
                     dataOutputStream.flush();
                     dataOutputStream.close();
