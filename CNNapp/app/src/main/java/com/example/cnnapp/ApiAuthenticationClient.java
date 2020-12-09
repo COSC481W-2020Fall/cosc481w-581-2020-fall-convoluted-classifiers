@@ -281,11 +281,20 @@ public class ApiAuthenticationClient {
                     dataOutputStream.writeBytes(crlf); //indicating the beginning of the file
                     dataOutputStream.write(byteArray);
                     dataOutputStream.writeBytes(crlf); //indicating the end of the file
-                    dataOutputStream.writeBytes(twoHyphens + boundary + twoHyphens + crlf); //indicating the end of the data part
 
                     if(!dogBreed.equals(""))
                     {
+                        dataOutputStream.writeBytes(twoHyphens + boundary + crlf); //denote the beginning of a data part
+                        dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"breed\"" + crlf); //indicate the field name and the file name
+                        dataOutputStream.writeBytes("Content-Type: text/plain" + crlf); //indicating file type
+                        dataOutputStream.writeBytes(crlf); //indicating the beginning of the file
                         dataOutputStream.writeBytes(dogBreed);
+                        dataOutputStream.writeBytes(crlf); //indicating the end of the file
+                        dataOutputStream.writeBytes(twoHyphens + boundary + twoHyphens + crlf); //indicating the end of the data part
+                    }
+                    else
+                    {
+                        dataOutputStream.writeBytes(twoHyphens + boundary + twoHyphens + crlf); //indicating the end of the data part
                     }
 
                     dataOutputStream.flush();

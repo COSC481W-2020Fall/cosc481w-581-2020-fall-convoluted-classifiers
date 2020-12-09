@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 
 public class FourthActivity extends AppCompatActivity
@@ -155,8 +158,10 @@ public class FourthActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            //Display results
-            if(result.equals("Success!"))
+            String response = apiAuthenticationClient.getLastResponse();
+
+            //Display results as toast
+            if(!response.equals(""))
             {
                 Toast.makeText(FourthActivity.this, "Thank you, your response has been submitted!", Toast.LENGTH_LONG).show();
             }
