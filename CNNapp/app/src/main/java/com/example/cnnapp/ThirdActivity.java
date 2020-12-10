@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -70,30 +69,6 @@ public class ThirdActivity extends AppCompatActivity
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT));
 
-        //Create row with column names
-        TextView labelImage = new TextView(this);
-        labelImage.setId(TableLayout.generateViewId());
-        labelImage.setText("Image");
-        labelImage.setPadding(5, 5, 5, 5);
-        trHead.addView(labelImage);
-
-        TextView labelBreed = new TextView(this);
-        labelBreed.setId(TableLayout.generateViewId());
-        labelBreed.setText("Breed");
-        labelBreed.setPadding(5, 5, 5, 5);
-        trHead.addView(labelBreed);
-
-        TextView labelConfidence = new TextView(this);
-        labelConfidence.setId(TableLayout.generateViewId());
-        labelConfidence.setText("Confidence");
-        labelConfidence.setPadding(5, 5, 5, 5);
-        trHead.addView(labelConfidence);
-
-        //Display row with column names
-        tl.addView(trHead, new TableLayout.LayoutParams(
-                TableLayout.LayoutParams.MATCH_PARENT,
-                TableLayout.LayoutParams.MATCH_PARENT));
-
         //Get amount of rows in database
         TableRow[] tr_head = new TableRow[list.size()];
         ImageView[] imageArray = new ImageView[list.size()];
@@ -113,27 +88,17 @@ public class ThirdActivity extends AppCompatActivity
             //Display dog image
             imageArray[i] = new ImageView(this);
             imageArray[i].setId(i+111);
-
-/*            //Convert image to bitmap
-            byte[] arr = list.get(i).getImage();
-            Bitmap myBitmap = BitmapFactory.decodeByteArray(arr, 0, arr.length);
-            imageArray[i].setImageBitmap(myBitmap);*/
-
             try {
                 String pathStr = list.get(i).getImage();
-                //File f = new File(pathStr);
                 Bitmap myBitmap = BitmapFactory.decodeFile(pathStr);
                 imageArray[i].setImageBitmap(myBitmap);
             }
-            catch(Exception e)
-            {
-                Toast.makeText(ThirdActivity.this, "here", Toast.LENGTH_LONG).show();
-            }
+            catch(Exception e) { }
 
             imageArray[i].setPadding(5, 5, 5, 5);
             tr_head[i].addView(imageArray[i]);
-            imageArray[i].getLayoutParams().height = 300;
-            imageArray[i].getLayoutParams().width= 400;
+            imageArray[i].getLayoutParams().height = 250;
+            imageArray[i].getLayoutParams().width= 350;
             imageArray[i].requestLayout();
 
             //Create the TextView breed
@@ -141,7 +106,8 @@ public class ThirdActivity extends AppCompatActivity
             textBreed[i].setId(i+111);
             textBreed[i].setText(list.get(i).getBreed());
             textBreed[i].setPadding(5, 5, 5, 5);
-            textBreed[i].setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            textBreed[i].setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+            textBreed[i].setMaxWidth(400);
             tr_head[i].addView(textBreed[i]);
 
             //Create the TextView confidence
@@ -149,13 +115,13 @@ public class ThirdActivity extends AppCompatActivity
             textConfidence[i].setId(i+111);
             textConfidence[i].setText(list.get(i).getConfidence().substring(0, 4)  + "%");
             textConfidence[i].setPadding(5, 5, 5, 5);
-            textConfidence[i].setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            textConfidence[i].setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
             tr_head[i].addView(textConfidence[i]);
 
             //Add each row to table
             tl.addView(tr_head[i], new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT,
-                    TableLayout.LayoutParams.WRAP_CONTENT));
+                    TableLayout.LayoutParams.MATCH_PARENT));
         }
     }
 

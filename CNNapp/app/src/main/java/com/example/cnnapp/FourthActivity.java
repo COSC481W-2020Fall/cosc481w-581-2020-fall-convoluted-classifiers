@@ -19,9 +19,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 
 public class FourthActivity extends AppCompatActivity
@@ -34,7 +31,6 @@ public class FourthActivity extends AppCompatActivity
     Uri imgURI;
     File imgFile;
     ProgressBar progressBar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

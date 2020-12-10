@@ -17,17 +17,56 @@
         android:textSize="30sp"
         android:layout_centerHorizontal= "true" />
 
+    <TableLayout
+        android:id="@+id/headers"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/titleText"
+        android:stretchColumns="*" >
+        <TableRow>
+            <TextView
+                android:id="@+id/image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Image"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/breed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Breed"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/confidence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confidence"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"/>
+        </TableRow>
+    </TableLayout>
+
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_below="@id/titleText"
+        android:layout_below="@id/headers"
         android:layout_height="500dp" >
 
     <TableLayout
         android:id="@+id/main_table"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_below="@id/titleText" />
+        android:layout_below="@id/headers" />
 
     </ScrollView>
 
@@ -37,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/scroll"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="20dp"
         android:background="#999999"
         android:layout_centerHorizontal= "true"
         android:onClick="onButtonClick"

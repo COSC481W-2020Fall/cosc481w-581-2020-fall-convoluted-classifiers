@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity
         //Displays image that was taken to user from Camera
         if (requestCode == 1) {
             imgFile = new File(mCurrentPhotoPath);
+            selectedImage = Uri.parse(mCurrentPhotoPath);
             //Checks if File exists
             if (imgFile.exists()) {
                 //Displays image taken
@@ -156,7 +157,6 @@ public class MainActivity extends AppCompatActivity
 
             } catch (Exception e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-
             }
         }
 
@@ -270,7 +270,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
 
     /* To fix image rotation issue */
     public Bitmap displayImage(Bitmap myBitmap)
