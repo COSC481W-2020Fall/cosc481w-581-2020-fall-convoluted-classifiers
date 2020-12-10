@@ -4,15 +4,15 @@ public class History {
 
     private String breed;
     private String confidence;
-    private byte[] image;
+    private String image;
 
-    public History(byte[] image, String breed, String confidence){
+    public History(String image, String breed, String confidence){
         this.image = image;
         this.breed = breed;
         this.confidence = confidence;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 

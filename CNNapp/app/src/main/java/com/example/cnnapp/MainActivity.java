@@ -5,7 +5,12 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.annotation.SuppressLint;
+import android.content.ContentUris;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -15,7 +20,12 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.FileUtils;
+import android.os.ParcelFileDescriptor;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,12 +37,11 @@ import android.widget.Toast;
 
 import org.json.*;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 
 public class MainActivity extends AppCompatActivity
 {
@@ -50,6 +59,7 @@ public class MainActivity extends AppCompatActivity
     String breed = "";
     String confidence = "";
     DatabaseManager db;
+    String pathDB;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -106,20 +116,17 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         resultTextView.setText("");
         //Displays image that was taken to user from Camera
-        if (requestCode == 1)
-        {
+        if (requestCode == 1) {
             imgFile = new File(mCurrentPhotoPath);
-            selectedImage = Uri.parse(mCurrentPhotoPath);
             //Checks if File exists
-            if (imgFile.exists())
-            {
+            if (imgFile.exists()) {
                 //Displays image taken
                 myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 myBitmap = displayImage(myBitmap);
@@ -130,10 +137,8 @@ public class MainActivity extends AppCompatActivity
             }
         }
         //Displays image chosen from Gallery
-        else if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null)
-        {
-            try
-            {
+        else if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
+            try {
                 //Get selected image uri
                 selectedImage = data.getData();
 
@@ -145,8 +150,14 @@ public class MainActivity extends AppCompatActivity
 
                 //Get image filepath
                 imgFile = new File(selectedImage.getPath());
+
+                //Create filepath for image (for database)
+                saveToInternalStorage(myBitmap);
+
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+
             }
-            catch(Exception e) {}
         }
 
         //Display progress bar
@@ -161,6 +172,31 @@ public class MainActivity extends AppCompatActivity
             execute.execute();
         } catch (Exception ex) {
         }
+    }
+
+    private void saveToInternalStorage(Bitmap bitmapImage){
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
+        String mImageName="MI_"+ timeStamp +".png";
+        // path to /data/data/yourapp/app_data/imageDir
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        // Create imageDir
+        File myPath = new File(directory,mImageName);
+
+        FileOutputStream fos = null;
+        try
+        {
+            fos = new FileOutputStream(myPath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        pathDB = directory.getAbsolutePath() + "/" + mImageName;
     }
 
     public void onButtonClick(View v)
@@ -199,6 +235,7 @@ public class MainActivity extends AppCompatActivity
 
         //Save a File: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.getAbsolutePath();
+        pathDB = image.getAbsolutePath();
         return image;
     }
 
@@ -224,7 +261,7 @@ public class MainActivity extends AppCompatActivity
             if (photoFile != null)
             {
                 Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.android.fileprovider",
+                        "com.example.android.fileprovider1",
                         photoFile);
 
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -282,15 +319,8 @@ public class MainActivity extends AppCompatActivity
     /* Insert image, breed and confidence into the database */
     public void insert(String breed, String confidence)
     {
-        //Convert bitmap to byte[]
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        myBitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
-        byte[] image = outputStream.toByteArray();
-        if(image.length / (1024*1024) < ((1024*1024) * 2/ (1024*1024)))
-        {
-            History history = new History(image, breed, confidence);
-            db.insert(history);
-        }
+        History history = new History(pathDB, breed, confidence);
+        db.insert(history);
     }
 
     //REST API INSTALL CODE

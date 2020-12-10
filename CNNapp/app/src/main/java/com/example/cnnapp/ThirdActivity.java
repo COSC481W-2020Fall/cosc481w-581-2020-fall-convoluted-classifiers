@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -25,6 +27,7 @@ import java.util.LinkedList;
 public class ThirdActivity extends AppCompatActivity
 {
     DatabaseManager db;
+    File imgFile;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -39,7 +42,7 @@ public class ThirdActivity extends AppCompatActivity
             //Get file path
             Bundle extras = getIntent().getExtras();
             Uri imgURI = Uri.parse(extras.getString("imageUri"));
-            File imgFile = new File(imgURI.getPath());
+            imgFile = new File(imgURI.getPath());
 
             String breed = extras.getString("breed");
             String confidence = extras.getString("confidence");
@@ -110,10 +113,21 @@ public class ThirdActivity extends AppCompatActivity
             imageArray[i] = new ImageView(this);
             imageArray[i].setId(i+111);
 
-            //Convert image to bitmap
+/*            //Convert image to bitmap
             byte[] arr = list.get(i).getImage();
             Bitmap myBitmap = BitmapFactory.decodeByteArray(arr, 0, arr.length);
-            imageArray[i].setImageBitmap(myBitmap);
+            imageArray[i].setImageBitmap(myBitmap);*/
+
+            try {
+                String pathStr = list.get(i).getImage();
+                //File f = new File(pathStr);
+                Bitmap myBitmap = BitmapFactory.decodeFile(pathStr);
+                imageArray[i].setImageBitmap(myBitmap);
+            }
+            catch(Exception e)
+            {
+                Toast.makeText(ThirdActivity.this, "here", Toast.LENGTH_LONG).show();
+            }
 
             imageArray[i].setPadding(5, 5, 5, 5);
             tr_head[i].addView(imageArray[i]);

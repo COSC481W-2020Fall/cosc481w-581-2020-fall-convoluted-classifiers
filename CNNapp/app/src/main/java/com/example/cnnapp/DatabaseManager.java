@@ -63,7 +63,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLENAME, new String[] {"IMAGE", "BREED", "CONFIDENCE"}, null, null, null, null, null);
 
         while(cursor.moveToNext()){
-            byte[] image = cursor.getBlob(0);
+            String image = cursor.getString(0);
             String breed = cursor.getString(1);
             String confidence = cursor.getString(2);
 
