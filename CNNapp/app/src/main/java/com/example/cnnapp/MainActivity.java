@@ -285,10 +285,12 @@ public class MainActivity extends AppCompatActivity
         //Convert bitmap to byte[]
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
-
-        History history = new History(outputStream.toByteArray(), breed, confidence);
-
-        db.insert(history);
+        byte[] image = outputStream.toByteArray();
+        if(image.length / (1024*1024) < ((1024*1024) * 2/ (1024*1024)))
+        {
+            History history = new History(image, breed, confidence);
+            db.insert(history);
+        }
     }
 
     //REST API INSTALL CODE

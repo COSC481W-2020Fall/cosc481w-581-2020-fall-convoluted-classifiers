@@ -17,19 +17,26 @@
         android:textSize="30sp"
         android:layout_centerHorizontal= "true" />
 
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_below="@id/titleText"
+        android:layout_height="500dp" >
+
     <TableLayout
         android:id="@+id/main_table"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_below="@id/titleText" />
 
-    <!-- Button to move to Settings -->
+    </ScrollView>
 
+    <!-- Button to move to Settings -->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/main_table"
+        android:layout_below="@id/scroll"
         android:layout_marginTop="68dp"
         android:background="#999999"
         android:layout_centerHorizontal= "true"
