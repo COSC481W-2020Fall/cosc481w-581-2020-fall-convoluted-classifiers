@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -131,8 +132,8 @@ public class ThirdActivity extends AppCompatActivity
 
             imageArray[i].setPadding(5, 5, 5, 5);
             tr_head[i].addView(imageArray[i]);
-            imageArray[i].getLayoutParams().height = 200;
-            imageArray[i].getLayoutParams().width= 300;
+            imageArray[i].getLayoutParams().height = 300;
+            imageArray[i].getLayoutParams().width= 400;
             imageArray[i].requestLayout();
 
             //Create the TextView breed
@@ -140,13 +141,15 @@ public class ThirdActivity extends AppCompatActivity
             textBreed[i].setId(i+111);
             textBreed[i].setText(list.get(i).getBreed());
             textBreed[i].setPadding(5, 5, 5, 5);
+            textBreed[i].setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             tr_head[i].addView(textBreed[i]);
 
             //Create the TextView confidence
             textConfidence[i] = new TextView(this);
             textConfidence[i].setId(i+111);
-            textConfidence[i].setText(list.get(i).getConfidence());
+            textConfidence[i].setText(list.get(i).getConfidence().substring(0, 4)  + "%");
             textConfidence[i].setPadding(5, 5, 5, 5);
+            textConfidence[i].setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             tr_head[i].addView(textConfidence[i]);
 
             //Add each row to table

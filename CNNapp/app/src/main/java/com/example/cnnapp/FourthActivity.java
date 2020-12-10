@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -32,6 +33,8 @@ public class FourthActivity extends AppCompatActivity
     Bitmap myBitmap;
     Uri imgURI;
     File imgFile;
+    ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,6 +48,7 @@ public class FourthActivity extends AppCompatActivity
         image = (ImageView)findViewById(R.id.pictureDisplay);
         userInput = (EditText) findViewById(R.id.breedInput);
         submitBtn = (Button) findViewById(R.id.submitButton);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         //Enable submit button and text box
         submitBtn.setEnabled(true);
@@ -104,6 +108,9 @@ public class FourthActivity extends AppCompatActivity
         }
         catch(Exception e) { }
 
+        //Display progress bar
+        progressBar.setVisibility(View.VISIBLE);
+
         //REST API INSTALL CODE
         try {
             ApiAuthenticationClient apiAuthenticationClient =
@@ -113,6 +120,9 @@ public class FourthActivity extends AppCompatActivity
             execute.execute();
         } catch (Exception ex) {
         }
+
+
+
     }
 
     public void onCancelClick(View v)
@@ -158,6 +168,8 @@ public class FourthActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            progressBar.setVisibility(View.INVISIBLE);
+
             String response = apiAuthenticationClient.getLastResponse();
 
             //Display results as toast
@@ -176,3 +188,4 @@ public class FourthActivity extends AppCompatActivity
             }
         }
     }
+
