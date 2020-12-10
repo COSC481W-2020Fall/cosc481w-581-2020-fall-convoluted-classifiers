@@ -1,6 +1,8 @@
 package com.example.cnnapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,8 +18,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -51,7 +51,6 @@ public class ThirdActivity extends AppCompatActivity
 
         //Build table and add image, breed, and confidence
         buildTable();
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -110,21 +109,17 @@ public class ThirdActivity extends AppCompatActivity
             //Display dog image
             imageArray[i] = new ImageView(this);
             imageArray[i].setId(i+111);
-            //Get string uri and parse
-            Uri imgURI = Uri.parse(list.get(i).getImageURI());
-            //File imgFile = new File(imgURI.getPath());
 
-            //Neither works
-            //imageArray[i].setImageURI(imgURI);
-
-            //Picasso.with(ThirdActivity.this).load(imgURI).into(imageArray[i]);
+            //Convert image to bitmap
+            byte[] arr = list.get(i).getImage();
+            Bitmap myBitmap = BitmapFactory.decodeByteArray(arr, 0, arr.length);
+            imageArray[i].setImageBitmap(myBitmap);
 
             imageArray[i].setPadding(5, 5, 5, 5);
             tr_head[i].addView(imageArray[i]);
-            //Set image sizes *works, but I commented out while testing*
-            //imageArray[i].getLayoutParams().height = 200;
-            //imageArray[i].getLayoutParams().width= 300;
-            //imageArray[i].requestLayout();
+            imageArray[i].getLayoutParams().height = 200;
+            imageArray[i].getLayoutParams().width= 300;
+            imageArray[i].requestLayout();
 
             //Create the TextView breed
             textBreed[i] = new TextView(this);

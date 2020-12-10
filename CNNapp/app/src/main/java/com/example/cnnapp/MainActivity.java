@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.*;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -73,6 +75,9 @@ public class MainActivity extends AppCompatActivity
 
         db = new DatabaseManager(this);
 
+        //Only need to run once, then comment out or delete
+        //db.delete();
+        //db.create();
     }
 
     /* For Settings Icon */
@@ -274,13 +279,14 @@ public class MainActivity extends AppCompatActivity
                 matrix, true);
     }
 
-    /* Insert image uri, breed and confidence in the database */
+    /* Insert image, breed and confidence into the database */
     public void insert(String breed, String confidence)
     {
-        //Convert uri to string
-        String strURI = selectedImage.toString();
+        //Convert bitmap to byte[]
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        myBitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
 
-        History history = new History(strURI, breed, confidence);
+        History history = new History(outputStream.toByteArray(), breed, confidence);
 
         db.insert(history);
     }

@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
-
-import java.net.URI;
 import java.util.LinkedList;
 
 public class DatabaseManager extends SQLiteOpenHelper {
@@ -24,7 +22,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String command = "create Table " + TABLENAME + "(URI uri, " + "BREED breed, " + "CONFIDENCE confidence)";
+        String command = "create Table " + TABLENAME + "(IMAGE image, " + "BREED breed, " + "CONFIDENCE confidence)";
         sqLiteDatabase.execSQL(command);
     }
 
@@ -33,11 +31,24 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     }
 
+    public void delete()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + TABLENAME);
+    }
+
+    public void create()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        String command = "create Table " + TABLENAME + "(IMAGE image, " + "BREED breed, " + "CONFIDENCE confidence)";
+        db.execSQL(command);
+    }
+
     public void insert(History history) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues row = new ContentValues();
 
-        row.put("URI", history.getImageURI());
+        row.put("IMAGE", history.getImage());
         row.put("BREED", history.getBreed());
         row.put("CONFIDENCE", history.getConfidence());
 
@@ -45,17 +56,18 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
+
     public LinkedList<History> display() {
         SQLiteDatabase db = getWritableDatabase();
         LinkedList<History> list = new LinkedList<>();
-        Cursor cursor = db.query(TABLENAME, new String[] {"URI", "BREED", "CONFIDENCE"}, null, null, null, null, null);
+        Cursor cursor = db.query(TABLENAME, new String[] {"IMAGE", "BREED", "CONFIDENCE"}, null, null, null, null, null);
 
         while(cursor.moveToNext()){
-            String imageURI = cursor.getString(0);
+            byte[] image = cursor.getBlob(0);
             String breed = cursor.getString(1);
             String confidence = cursor.getString(2);
 
-            History history = new History(imageURI, breed, confidence);
+            History history = new History(image, breed, confidence);
             list.addLast(history);
         }
 

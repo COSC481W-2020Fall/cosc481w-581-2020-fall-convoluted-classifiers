@@ -2,18 +2,18 @@ package com.example.cnnapp;
 
 public class History {
 
-    private String imageURI;
     private String breed;
     private String confidence;
+    private byte[] image;
 
-    public History(String imageURI, String breed, String confidence){
-        this.imageURI = imageURI;
+    public History(byte[] image, String breed, String confidence){
+        this.image = image;
         this.breed = breed;
         this.confidence = confidence;
     }
 
-    public String getImageURI() {
-        return imageURI;
+    public byte[] getImage() {
+        return image;
     }
 
     public String getBreed() {
@@ -22,9 +22,5 @@ public class History {
 
     public String getConfidence() {
         return confidence;
-    }
-
-    public String toString(){
-        return breed + confidence;
     }
 }
