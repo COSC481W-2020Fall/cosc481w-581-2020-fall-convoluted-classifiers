@@ -5,12 +5,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
-import android.annotation.SuppressLint;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -20,12 +17,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.FileUtils;
-import android.os.ParcelFileDescriptor;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.provider.OpenableColumns;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -67,10 +59,6 @@ public class MainActivity extends AppCompatActivity
     {
         //REST API INSTALL CODE
         baseUrl = "http://54.196.90.20:4201/image/";
-                //"http://3.82.138.53:4201/image/";
-        //baseUrl = "http://3.82.138.53:4201/image/?file=@";
-        //http://3.88.49.82:4201/breed/[IMAGE_NAME]
-        //http://IP:PORT/image?file=FILENAME
 
         //Use activity_main.xml to style the app
         super.onCreate(savedInstanceState);
@@ -108,7 +96,7 @@ public class MainActivity extends AppCompatActivity
         //Moves to second activity (settings)
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
         if(selectedImage != null) {
-            intent.putExtra("imageUri", selectedImage.toString());
+            intent.putExtra("imageUri", pathDB);
             intent.putExtra("breed", breed);
             intent.putExtra("confidence", confidence);
         }
@@ -261,7 +249,7 @@ public class MainActivity extends AppCompatActivity
             if (photoFile != null)
             {
                 Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.android.fileprovider1",
+                        "com.example.android.fileprovider",
                         photoFile);
 
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -368,18 +356,15 @@ public class MainActivity extends AppCompatActivity
 
             //Display results
             resultTextView.setVisibility(View.VISIBLE);
-            //json = new JSONObject("{\"result\":\"{'breed':'toy_poodle','confidence':98.9319984654}\"}");
+
           try
           {
               jsonResult = (apiAuthenticationClient.getLastResponse());
               JSONObject jsonObject = new JSONObject(jsonResult);
               JSONObject resultObject = jsonObject.getJSONObject("result");
 
-              //String string = jsonObject.getString("result").replaceAll("[,}:{_\"\']", " ");
-
               breed = resultObject.getString("label");
               confidence = resultObject.getString("confidence");
-              //output.append(String.format("%s \n %s ", breed, confidence));
 
               String outputString = "Breed: " + breed.replaceAll("_", " ") + "\nConfidence: " + confidence.substring(0, 4) + "%";
               resultTextView.setText(outputString);

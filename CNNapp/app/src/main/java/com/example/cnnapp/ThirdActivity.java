@@ -3,6 +3,7 @@ package com.example.cnnapp;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,11 +16,11 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.exifinterface.media.ExifInterface;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -28,6 +29,8 @@ public class ThirdActivity extends AppCompatActivity
 {
     DatabaseManager db;
     File imgFile;
+    String pathStr;
+    Bitmap myBitmap, fixedBitmap;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -89,9 +92,10 @@ public class ThirdActivity extends AppCompatActivity
             imageArray[i] = new ImageView(this);
             imageArray[i].setId(i+111);
             try {
-                String pathStr = list.get(i).getImage();
-                Bitmap myBitmap = BitmapFactory.decodeFile(pathStr);
-                imageArray[i].setImageBitmap(myBitmap);
+                pathStr = list.get(i).getImage();
+                myBitmap = BitmapFactory.decodeFile(pathStr);
+                fixedBitmap = displayImage(myBitmap);
+                imageArray[i].setImageBitmap(fixedBitmap);
             }
             catch(Exception e) { }
 
@@ -153,4 +157,47 @@ public class ThirdActivity extends AppCompatActivity
         startActivity(intent);
         //setContentView(R.layout.activity_third);
     }
+    /* To fix image rotation issue */
+    public Bitmap displayImage(Bitmap myBitmap)
+    {
+        int orientation = 0;
+        Bitmap rotatedBitmap = null;
+
+        try {
+            ExifInterface ei = new ExifInterface(pathStr);
+            orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_UNDEFINED);
+        }
+        catch (Exception e) { }
+
+        switch (orientation)
+        {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                rotatedBitmap = rotateImage(myBitmap, 90);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                rotatedBitmap = rotateImage(myBitmap, 180);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                rotatedBitmap = rotateImage(myBitmap, 270);
+                break;
+
+            case ExifInterface.ORIENTATION_NORMAL:
+            default:
+                rotatedBitmap = myBitmap;
+
+        }
+        return rotatedBitmap;
+    }
+
+    public static Bitmap rotateImage(Bitmap source, float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
+    }
+
 }

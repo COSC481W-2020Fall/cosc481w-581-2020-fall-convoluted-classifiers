@@ -2,13 +2,15 @@ package com.example.cnnapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.exifinterface.media.ExifInterface;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,10 +29,11 @@ public class FourthActivity extends AppCompatActivity
     EditText userInput;
     Button submitBtn;
     String baseUrl;
-    Bitmap myBitmap;
+    Bitmap myBitmap, fixedBitmap;
     Uri imgURI;
     File imgFile;
     ProgressBar progressBar;
+    String path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,11 +58,14 @@ public class FourthActivity extends AppCompatActivity
         {
             //Get file path
             Bundle extras = getIntent().getExtras();
+            path = extras.getString("imageUri");
             imgURI = Uri.parse(extras.getString("imageUri"));
             imgFile = new File(imgURI.getPath());
 
             //Display image
-            image.setImageURI(imgURI);
+            myBitmap = BitmapFactory.decodeFile(path);
+            fixedBitmap = displayImage(myBitmap);
+            image.setImageBitmap(fixedBitmap);
         }
         catch (Exception e)
         {
@@ -100,7 +106,7 @@ public class FourthActivity extends AppCompatActivity
         //Get bitmap
         try
         {
-            myBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgURI);
+            myBitmap = BitmapFactory.decodeFile(path);
         }
         catch(Exception e) { }
 
@@ -117,8 +123,6 @@ public class FourthActivity extends AppCompatActivity
         } catch (Exception ex) {
         }
 
-
-
     }
 
     public void onCancelClick(View v)
@@ -128,6 +132,48 @@ public class FourthActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    /* To fix image rotation issue */
+    public Bitmap displayImage(Bitmap myBitmap)
+    {
+        int orientation = 0;
+        Bitmap rotatedBitmap = null;
+
+        try {
+            ExifInterface ei = new ExifInterface(path);
+            orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_UNDEFINED);
+        }
+        catch (Exception e) { }
+
+        switch (orientation)
+        {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                rotatedBitmap = rotateImage(myBitmap, 90);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                rotatedBitmap = rotateImage(myBitmap, 180);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                rotatedBitmap = rotateImage(myBitmap, 270);
+                break;
+
+            case ExifInterface.ORIENTATION_NORMAL:
+            default:
+                rotatedBitmap = myBitmap;
+
+        }
+        return rotatedBitmap;
+    }
+
+    public static Bitmap rotateImage(Bitmap source, float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
+    }
     //REST API INSTALL CODE
     /**
      * This subclass handles the network operations in a new thread.
