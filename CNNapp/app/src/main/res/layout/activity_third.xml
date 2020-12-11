@@ -56,29 +56,31 @@
         </TableRow>
     </TableLayout>
 
+    <!-- Button to move to Settings -->
+
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_below="@id/headers"
-        android:layout_height="500dp" >
-
-    <TableLayout
-        android:id="@+id/main_table"
-        android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_below="@id/headers" />
+        android:layout_below="@id/headers"
+        android:layout_marginTop="-7dp">
+
+        <TableLayout
+            android:id="@+id/main_table"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_below="@id/headers" />
 
     </ScrollView>
 
-    <!-- Button to move to Settings -->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/scroll"
-        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
         android:background="#999999"
-        android:layout_centerHorizontal= "true"
         android:onClick="onButtonClick"
         android:padding="10dp"
         android:text="Return to Settings"
