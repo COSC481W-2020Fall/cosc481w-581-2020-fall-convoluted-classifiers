@@ -8,104 +8,113 @@
     tools:context=".FourthActivity">
 
     <TableRow
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:text="Submit Correction"
             android:textSize="30sp" />
     </TableRow>
 
-    <TableRow>
-        <TableRow
-            android:gravity="center">
-            <!-- Display for Image -->
-            <ImageView
-                android:id="@+id/pictureDisplay"
-                android:layout_width="200dp"
-                android:layout_height="311dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:scaleType="centerInside" />
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        <TableRow>
+            <TableRow
+                android:gravity="center">
+                <!-- Display for Image -->
+                <ImageView
+                    android:id="@+id/pictureDisplay"
+                    android:layout_width="200dp"
+                    android:layout_height="311dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:scaleType="centerInside" />
+            </TableRow>
         </TableRow>
-    </TableRow>
 
-    <TableRow>
-        <TableRow
-            android:gravity="center">
+        <TableRow>
+            <TableRow
+                android:gravity="center">
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="254dp"
-                android:layout_height="80dp"
-                android:layout_below="@+id/photoButton"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:indeterminate="true"
-                android:indeterminateDrawable="@drawable/progressbar"
-                android:visibility="invisible" />
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="254dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/photoButton"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:indeterminate="true"
+                    android:indeterminateDrawable="@drawable/progressbar"
+                    android:visibility="invisible" />
+            </TableRow>
         </TableRow>
-    </TableRow>
 
-    <TableRow>
+        <TableRow>
 
-        <TableRow android:gravity="center">
-            <!-- Text box for Correct Dog Breed -->
-            <EditText
-                android:id="@+id/breedInput"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="#999999"
-                android:gravity="center_horizontal"
-                android:hint="Enter Dog Breed"
-                android:selectAllOnFocus="false"
-                android:textAlignment="center" />
+            <TableRow android:gravity="center">
+                <!-- Text box for Correct Dog Breed -->
+                <EditText
+                    android:id="@+id/breedInput"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#999999"
+                    android:gravity="center_horizontal"
+                    android:hint="Enter Dog Breed"
+                    android:selectAllOnFocus="false"
+                    android:textAlignment="center" />
+            </TableRow>
         </TableRow>
-    </TableRow>
 
-    <TableRow
-        android:layout_marginTop="20dp">
         <TableRow
-            android:gravity="center">
+            android:layout_marginTop="20dp">
+            <TableRow
+                android:gravity="center">
 
-            <!-- Submit Button -->
-            <Button
-                android:id="@+id/submitButton"
-                android:layout_width="120dp"
+                <!-- Submit Button -->
+                <Button
+                    android:id="@+id/submitButton"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="#999999"
+                    android:onClick="onSubmitClick"
+                    android:text="Submit"
+                    android:textSize="20sp" />
+
+                <!-- Cancel Button -->
+                <Button
+                    android:id="@+id/cancelButton"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="#999999"
+                    android:onClick="onCancelClick"
+                    android:textSize="20sp"
+                    android:text="Cancel" />
+            </TableRow>
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="20dp" >
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="#999999"
-                android:onClick="onSubmitClick"
-                android:text="Submit"
+                android:layout_marginLeft="10dp"
+                android:text="*Note: submitting allows us to use the correct dog breed in future predictions"
                 android:textSize="20sp" />
-
-            <!-- Cancel Button -->
-            <Button
-                android:id="@+id/cancelButton"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:background="#999999"
-                android:onClick="onCancelClick"
-                android:textSize="20sp"
-                android:text="Cancel" />
         </TableRow>
-    </TableRow>
+    </TableLayout>
 
-    <TableRow
-        android:layout_marginTop="20dp" >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="*Note: submitting allows us to use the correct dog breed in future predictions"
-            android:textSize="20sp" />
-    </TableRow>
-
-
+</ScrollView>
 </TableLayout>

@@ -7,63 +7,74 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Display for Image -->
-    <ImageView
-        android:id="@+id/pictureDisplay"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:scaleType="centerInside"/>
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-    <!-- Button to take Picture -->
-    <Button
-        android:id="@+id/photoButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pictureDisplay"
-        android:layout_marginTop="40dp"
-        android:layout_alignLeft="@+id/pictureDisplay"
-        android:background="#999999"
-        android:onClick="onButtonClick"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:text="Take Photo" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            
+        <!-- Display for Image -->
+        <ImageView
+            android:id="@+id/pictureDisplay"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerInside"/>
 
-    <!-- Button to choose image from Gallery -->
-    <Button
-        android:id="@+id/galleryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pictureDisplay"
-        android:layout_toRightOf="@id/photoButton"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="15dp"
-        android:background="#999999"
-        android:onClick="onGalleryClick"
-        android:textSize="20sp"
-        android:text="Open Gallery" />
+        <!-- Button to take Picture -->
+        <Button
+            android:id="@+id/photoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pictureDisplay"
+            android:layout_marginTop="40dp"
+            android:layout_alignLeft="@+id/pictureDisplay"
+            android:background="#999999"
+            android:onClick="onButtonClick"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:text="Take Photo" />
 
-    <!-- Label to display Output (Yes/No Dog) -->
-    <TextView
-        android:id="@+id/resultTextDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/photoButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:textSize="30sp"
-        android:textColor="#000000"
-        android:visibility="invisible" />
+        <!-- Button to choose image from Gallery -->
+        <Button
+            android:id="@+id/galleryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pictureDisplay"
+            android:layout_toRightOf="@id/photoButton"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="15dp"
+            android:background="#999999"
+            android:onClick="onGalleryClick"
+            android:textSize="20sp"
+            android:text="Open Gallery" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/photoButton"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        android:indeterminateDrawable="@drawable/progressbar"
-        android:indeterminate="true"
-        android:visibility="invisible" />
+        <!-- Label to display Output (Yes/No Dog) -->
+        <TextView
+            android:id="@+id/resultTextDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/photoButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:textSize="30sp"
+            android:textColor="#000000"
+            android:visibility="invisible" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/photoButton"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:indeterminateDrawable="@drawable/progressbar"
+            android:indeterminate="true"
+            android:visibility="invisible" />
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
